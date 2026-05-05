@@ -45,6 +45,7 @@ namespace TowerDefense.Player
         private Animator animator;
         private AnimatorParamCache animParams;
         private Health health;
+        private PlayerShield shield;
 
         private Vector2 moveInput;
         private bool jumpQueued;
@@ -61,6 +62,7 @@ namespace TowerDefense.Player
             animator = GetComponent<Animator>();
             animParams = new AnimatorParamCache(animator);
             health = GetComponent<Health>();
+            shield = GetComponent<PlayerShield>();
             if (health != null) health.Died += OnDied;
         }
 
@@ -88,6 +90,14 @@ namespace TowerDefense.Player
         {
             // Morto: ignora input mas deixa a gravidade agir
             if (isDead)
+            {
+                rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+                animParams.SetFloat(speedParam, 0f);
+                return;
+            }
+
+            // Defendendo: trava no chão e ignora input de movimento
+            if (shield != null && shield.IsShielding)
             {
                 rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
                 animParams.SetFloat(speedParam, 0f);
