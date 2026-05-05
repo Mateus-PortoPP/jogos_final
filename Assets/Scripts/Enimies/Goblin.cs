@@ -32,7 +32,7 @@ namespace TowerDefense.Enemies
         [Tooltip("Distância no eixo X em que o goblin para e ataca.")]
         [SerializeField] private float attackRange = 1.1f;
         [SerializeField] private float attackCooldown = 1.5f;
-        [SerializeField] private int damage = 8;
+        [SerializeField] private int damage = 1;
         [SerializeField] private string playerTag = "Player";
 
         [Header("Visual")]
@@ -71,7 +71,19 @@ namespace TowerDefense.Enemies
         private void Start()
         {
             var p = GameObject.FindGameObjectWithTag(playerTag);
-            if (p != null) player = p.transform;
+            if (p != null)
+            {
+                player = p.transform;
+                // Ignora colisão física entre goblin e player.
+                // Sem isso, os colisores se empurram quando se sobrepõem,
+                // o que causa o "empurrar eternamente" depois que o player morre.
+                var myCol = GetComponent<Collider2D>();
+                var playerCol = p.GetComponent<Collider2D>();
+                if (myCol != null && playerCol != null)
+                {
+                    Physics2D.IgnoreCollision(myCol, playerCol, true);
+                }
+            }
         }
 
         private void FixedUpdate()
