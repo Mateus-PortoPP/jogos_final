@@ -25,7 +25,7 @@ namespace TowerDefense.Player
         [SerializeField] private float moveSpeed = 5f;
 
         [Header("Pulo")]
-        [SerializeField] private float jumpForce = 10f;
+        [SerializeField] private float jumpForce = 7f;
         [Tooltip("Quanto abaixo do collider o raycast sonda o chão.")]
         [SerializeField] private float groundCheckDistance = 0.1f;
 
