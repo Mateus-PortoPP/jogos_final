@@ -1,0 +1,69 @@
+# Auto-detect text and normalize line endings
+* text=auto eol=lf
+
+# Force text for code/config
+*.cs        text diff=csharp
+*.shader    text
+*.cginc     text
+*.hlsl      text
+*.uss       text
+*.uxml      text
+*.json      text
+*.xml       text
+*.yaml      text
+*.yml       text
+*.md        text
+*.txt       text
+
+# Unity YAML assets — text, but mark to help merge tooling
+*.meta              merge=unityyamlmerge eol=lf
+*.unity             merge=unityyamlmerge eol=lf
+*.asset             merge=unityyamlmerge eol=lf
+*.prefab            merge=unityyamlmerge eol=lf
+*.mat               merge=unityyamlmerge eol=lf
+*.anim              merge=unityyamlmerge eol=lf
+*.controller        merge=unityyamlmerge eol=lf
+*.physicMaterial    merge=unityyamlmerge eol=lf
+*.physicsMaterial2D merge=unityyamlmerge eol=lf
+*.lighting          merge=unityyamlmerge eol=lf
+*.terrainlayer      merge=unityyamlmerge eol=lf
+
+# Treat as binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.bmp   binary
+*.tga   binary
+*.tif   binary
+*.tiff  binary
+*.psd   binary
+*.exr   binary
+*.hdr   binary
+*.ico   binary
+*.svg   binary
+*.fbx   binary
+*.obj   binary
+*.blend binary
+*.dae   binary
+*.3ds   binary
+*.stl   binary
+*.mb    binary
+*.ma    binary
+*.wav   binary
+*.mp3   binary
+*.ogg   binary
+*.aif   binary
+*.aiff  binary
+*.flac  binary
+*.mp4   binary
+*.mov   binary
+*.webm  binary
+*.dll   binary
+*.so    binary
+*.dylib binary
+*.zip   binary
+*.7z    binary
+*.rar   binary
+*.gz    binary
+*.unitypackage binary

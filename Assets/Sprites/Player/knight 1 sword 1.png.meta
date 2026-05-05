@@ -1,0 +1,910 @@
+fileFormatVersion: 2
+guid: f37fc9c585205434bb7c32a355114ddd
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1963495263312065096
+    second: knight 1 sword 1_0
+  - first:
+      213: -6597143696399954476
+    second: knight 1 sword 1_1
+  - first:
+      213: -7534093651294050097
+    second: knight 1 sword 1_2
+  - first:
+      213: 1613740754876876206
+    second: knight 1 sword 1_3
+  - first:
+      213: 4956363956087860537
+    second: knight 1 sword 1_4
+  - first:
+      213: 2041658700009817666
+    second: knight 1 sword 1_5
+  - first:
+      213: -8207212702665141859
+    second: knight 1 sword 1_6
+  - first:
+      213: -1396103859668821705
+    second: knight 1 sword 1_7
+  - first:
+      213: -1989662170099292752
+    second: knight 1 sword 1_8
+  - first:
+      213: 182699642372035552
+    second: knight 1 sword 1_9
+  - first:
+      213: -5554134298956012998
+    second: knight 1 sword 1_10
+  - first:
+      213: 5676706985252931858
+    second: knight 1 sword 1_11
+  - first:
+      213: -1100575828880325845
+    second: knight 1 sword 1_12
+  - first:
+      213: -7587454442924871798
+    second: knight 1 sword 1_13
+  - first:
+      213: -6007152290692774284
+    second: knight 1 sword 1_14
+  - first:
+      213: 7970402675678794345
+    second: knight 1 sword 1_15
+  - first:
+      213: 8171074459869094188
+    second: knight 1 sword 1_16
+  - first:
+      213: -1261875706252548544
+    second: knight 1 sword 1_17
+  - first:
+      213: 7303959927815322301
+    second: knight 1 sword 1_18
+  - first:
+      213: 1700811996291026019
+    second: knight 1 sword 1_19
+  - first:
+      213: 1229685562532696797
+    second: knight 1 sword 1_20
+  - first:
+      213: -8658862090323178611
+    second: knight 1 sword 1_21
+  - first:
+      213: 3834503406443098568
+    second: knight 1 sword 1_22
+  - first:
+      213: -1870012367968205728
+    second: knight 1 sword 1_23
+  - first:
+      213: 3824223750234910788
+    second: knight 1 sword 1_24
+  - first:
+      213: -4553614820999543389
+    second: knight 1 sword 1_25
+  - first:
+      213: -1548939432736925795
+    second: knight 1 sword 1_26
+  - first:
+      213: -5336624623953299170
+    second: knight 1 sword 1_27
+  - first:
+      213: 2961852905190692686
+    second: knight 1 sword 1_28
+  - first:
+      213: 6039486728960634806
+    second: knight 1 sword 1_29
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: knight 1 sword 1_0
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 207
+        width: 17
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bd4f18067340c4e0800000000000000
+      internalID: -1963495263312065096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight 1 sword 1_1
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 207
+        width: 17
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4dd8fd3e2cc3274a0800000000000000
+      internalID: -6597143696399954476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight 1 sword 1_2
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 207
+        width: 17
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc8a712ddb5817790800000000000000
+      internalID: -7534093651294050097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight 1 sword 1_3
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 207
+        width: 17
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea5c106aaa8256610800000000000000
+      internalID: 1613740754876876206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight 1 sword 1_4
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 207
+        width: 17
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93daa2412ca88c440800000000000000
+      internalID: 4956363956087860537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight 1 sword 1_5
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 208
+        width: 17
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 246cbae35cd655c10800000000000000
+      internalID: 2041658700009817666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight 1 sword 1_6
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 211
+        width: 21
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d911295d78f1a1e80800000000000000
+      internalID: -8207212702665141859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight 1 sword 1_7
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 144
+        width: 18
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73953eebfea00ace0800000000000000
+      internalID: -1396103859668821705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight 1 sword 1_8
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 143
+        width: 14
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b5e2384ccc4364e0800000000000000
+      internalID: -1989662170099292752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight 1 sword 1_9
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 144
+        width: 17
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e31d245b54198200800000000000000
+      internalID: 182699642372035552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight 1 sword 1_10
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 147
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a32e9eb3840cbe2b0800000000000000
+      internalID: -5554134298956012998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight 1 sword 1_11
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 144
+        width: 17
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 219caf53de6b7ce40800000000000000
+      internalID: 5676706985252931858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight 1 sword 1_12
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 143
+        width: 14
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b23053f5d18f9b0f0800000000000000
+      internalID: -1100575828880325845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight 1 sword 1_13
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 143
+        width: 19
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8fe00c5262f3b690800000000000000
+      internalID: -7587454442924871798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight 1 sword 1_14
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 79
+        width: 17
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4764591a1de42aca0800000000000000
+      internalID: -6007152290692774284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight 1 sword 1_15
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 79
+        width: 17
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96258a8210f8c9e60800000000000000
+      internalID: 7970402675678794345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight 1 sword 1_16
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 79
+        width: 18
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c21a3c5ddec756170800000000000000
+      internalID: 8171074459869094188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight 1 sword 1_17
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 79
+        width: 18
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0462f1a1bbaec7ee0800000000000000
+      internalID: -1261875706252548544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight 1 sword 1_18
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 79
+        width: 22
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbabe173bd0ec5560800000000000000
+      internalID: 7303959927815322301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight 1 sword 1_19
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 79
+        width: 22
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36c46a4df7f7a9710800000000000000
+      internalID: 1700811996291026019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight 1 sword 1_20
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 79
+        width: 35
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd210340188b01110800000000000000
+      internalID: 1229685562532696797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight 1 sword 1_21
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 15
+        width: 33
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8bc0333eca85d780800000000000000
+      internalID: -8658862090323178611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight 1 sword 1_22
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 38
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c1f0173884e63530800000000000000
+      internalID: 3834503406443098568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight 1 sword 1_23
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 35
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0640ba9b8a16c06e0800000000000000
+      internalID: -1870012367968205728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight 1 sword 1_24
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 15
+        width: 18
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4403d5e3d3f521530800000000000000
+      internalID: 3824223750234910788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight 1 sword 1_25
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 18
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a54e56427f4ec0c0800000000000000
+      internalID: -4553614820999543389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight 1 sword 1_26
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 14
+        width: 20
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d97de15eacf018ae0800000000000000
+      internalID: -1548939432736925795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight 1 sword 1_27
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 15
+        width: 19
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1939addd2080f5b0800000000000000
+      internalID: -5336624623953299170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight 1 sword 1_28
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 15
+        width: 18
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4799d2568d9a1920800000000000000
+      internalID: 2961852905190692686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight 1 sword 1_29
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 14
+        width: 34
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bf62617e2190d350800000000000000
+      internalID: 6039486728960634806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 34ad3d77cd1b34bfaae98f4729153be7
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      knight 1 sword 1_0: -1963495263312065096
+      knight 1 sword 1_1: -6597143696399954476
+      knight 1 sword 1_10: -5554134298956012998
+      knight 1 sword 1_11: 5676706985252931858
+      knight 1 sword 1_12: -1100575828880325845
+      knight 1 sword 1_13: -7587454442924871798
+      knight 1 sword 1_14: -6007152290692774284
+      knight 1 sword 1_15: 7970402675678794345
+      knight 1 sword 1_16: 8171074459869094188
+      knight 1 sword 1_17: -1261875706252548544
+      knight 1 sword 1_18: 7303959927815322301
+      knight 1 sword 1_19: 1700811996291026019
+      knight 1 sword 1_2: -7534093651294050097
+      knight 1 sword 1_20: 1229685562532696797
+      knight 1 sword 1_21: -8658862090323178611
+      knight 1 sword 1_22: 3834503406443098568
+      knight 1 sword 1_23: -1870012367968205728
+      knight 1 sword 1_24: 3824223750234910788
+      knight 1 sword 1_25: -4553614820999543389
+      knight 1 sword 1_26: -1548939432736925795
+      knight 1 sword 1_27: -5336624623953299170
+      knight 1 sword 1_28: 2961852905190692686
+      knight 1 sword 1_29: 6039486728960634806
+      knight 1 sword 1_3: 1613740754876876206
+      knight 1 sword 1_4: 4956363956087860537
+      knight 1 sword 1_5: 2041658700009817666
+      knight 1 sword 1_6: -8207212702665141859
+      knight 1 sword 1_7: -1396103859668821705
+      knight 1 sword 1_8: -1989662170099292752
+      knight 1 sword 1_9: 182699642372035552
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
