@@ -1,5 +1,6 @@
 using UnityEngine;
 using TowerDefense.Common;
+using TowerDefense.Manager;
 
 namespace TowerDefense.Enemies
 {
@@ -48,6 +49,10 @@ namespace TowerDefense.Enemies
         [Tooltip("Som tocado quando o goblin morre.")]
         [SerializeField] private AudioClip deathSound;
         [SerializeField, Range(0f, 1f)] private float soundVolume = 1f;
+
+        [Header("Recompensa")]
+        [Tooltip("Ouro dado ao jogador quando o goblin morre.")]
+        [SerializeField] private int goldReward = 8;
 
         private Rigidbody2D rb;
         private SpriteRenderer sr;
@@ -175,6 +180,9 @@ namespace TowerDefense.Enemies
             // Toca o som via PlayClipAtPoint pra continuar mesmo depois que o goblin for destruído
             if (deathSound != null)
                 AudioSource.PlayClipAtPoint(deathSound, transform.position, soundVolume);
+
+            // Recompensa de ouro pelo kill
+            GameManager.Instance?.AddGold(goldReward);
             // Health.cs destrói o GameObject após o destroyDelay
         }
 
