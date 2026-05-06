@@ -8,5 +8,7 @@ namespace TowerDefense.Common
     public interface IDamageBlocker
     {
         bool BlocksDamage { get; }
+        /// <summary>Chamado pelo Health quando o bloqueio efetivamente cancelou um dano.</summary>
+        void OnDamageBlocked(int amount);
     }
 }

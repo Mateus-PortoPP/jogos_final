@@ -34,7 +34,11 @@ namespace TowerDefense.Common
 
             // Permite que outro componente (ex: escudo) cancele o dano antes de aplicar
             var blocker = GetComponent<IDamageBlocker>();
-            if (blocker != null && blocker.BlocksDamage) return;
+            if (blocker != null && blocker.BlocksDamage)
+            {
+                blocker.OnDamageBlocked(amount);
+                return;
+            }
 
             Current = Mathf.Max(0, Current - amount);
             Damaged?.Invoke(Current, maxHealth);

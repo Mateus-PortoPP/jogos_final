@@ -44,11 +44,17 @@ namespace TowerDefense.Enemies
         [SerializeField] private string attackTrigger = "Attack";
         [SerializeField] private string deathTrigger = "Death";
 
+        [Header("Som")]
+        [Tooltip("Som tocado quando o goblin morre.")]
+        [SerializeField] private AudioClip deathSound;
+        [SerializeField, Range(0f, 1f)] private float soundVolume = 1f;
+
         private Rigidbody2D rb;
         private SpriteRenderer sr;
         private Animator animator;
         private AnimatorParamCache animParams;
         private Health health;
+        private Knockback knockback;
         private Transform player;
         private float lastAttackTime = -999f;
 
@@ -59,6 +65,7 @@ namespace TowerDefense.Enemies
             animator = GetComponent<Animator>();
             animParams = new AnimatorParamCache(animator);
             health = GetComponent<Health>();
+            knockback = GetComponent<Knockback>();
 
             if (health != null) health.Died += OnDeath;
         }
@@ -100,6 +107,13 @@ namespace TowerDefense.Enemies
             if (player == null)
             {
                 rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+                animParams.SetFloat(speedParam, 0f);
+                return;
+            }
+
+            // Em knockback: não sobrescreve velocidade — deixa o impulso agir
+            if (knockback != null && knockback.IsStunned)
+            {
                 animParams.SetFloat(speedParam, 0f);
                 return;
             }
@@ -158,6 +172,9 @@ namespace TowerDefense.Enemies
         private void OnDeath()
         {
             animParams.SetTrigger(deathTrigger);
+            // Toca o som via PlayClipAtPoint pra continuar mesmo depois que o goblin for destruído
+            if (deathSound != null)
+                AudioSource.PlayClipAtPoint(deathSound, transform.position, soundVolume);
             // Health.cs destrói o GameObject após o destroyDelay
         }
 

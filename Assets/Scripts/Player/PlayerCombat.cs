@@ -28,6 +28,19 @@ namespace TowerDefense.Player
         [Header("Animator")]
         [SerializeField] private string attackTrigger = "Attack";
 
+        [Header("Som")]
+        [Tooltip("Som tocado a cada golpe (mesmo no vazio).")]
+        [SerializeField] private AudioClip swordSound;
+        [Tooltip("Som tocado quando o golpe acerta pelo menos um inimigo.")]
+        [SerializeField] private AudioClip hitSound;
+        [SerializeField, Range(0f, 1f)] private float soundVolume = 1f;
+
+        [Header("Knockback")]
+        [Tooltip("Força do empurrão aplicado em inimigos atingidos.")]
+        [SerializeField] private float knockbackForce = 6f;
+        [Tooltip("Componente vertical do empurrão (>0 joga um pouco pra cima).")]
+        [SerializeField] private float knockbackUp = 0.3f;
+
         private SpriteRenderer sr;
         private Animator animator;
         private AnimatorParamCache animParams;
@@ -57,6 +70,9 @@ namespace TowerDefense.Player
 
             animParams.SetTrigger(attackTrigger);
 
+            if (swordSound != null)
+                AudioSource.PlayClipAtPoint(swordSound, transform.position, soundVolume);
+
             float facing = GetFacingSign();
             Vector2 origin = (Vector2)transform.position + new Vector2(hitboxOffset.x * facing, hitboxOffset.y);
 
@@ -70,9 +86,20 @@ namespace TowerDefense.Player
                 {
                     dmg.TakeDamage(damage);
                     hitCount++;
+
+                    // Empurra o inimigo na direção em que o player está olhando
+                    var kb = hit.GetComponent<Knockback>();
+                    if (kb != null)
+                    {
+                        Vector2 dir = new Vector2(facing, knockbackUp);
+                        kb.Apply(dir, knockbackForce);
+                    }
                 }
             }
             Debug.Log($"[PlayerCombat] {hits.Length} colliders na hitbox, {hitCount} inimigos atingidos.");
+
+            if (hitCount > 0 && hitSound != null)
+                AudioSource.PlayClipAtPoint(hitSound, transform.position, soundVolume);
         }
 
         private float GetFacingSign()

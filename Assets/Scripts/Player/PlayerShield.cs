@@ -25,6 +25,11 @@ namespace TowerDefense.Player
         [Header("Animator")]
         [SerializeField] private string shieldBoolParam = "Shield";
 
+        [Header("Som")]
+        [Tooltip("Som tocado quando o escudo absorve um ataque.")]
+        [SerializeField] private AudioClip blockSound;
+        [SerializeField, Range(0f, 1f)] private float blockVolume = 1f;
+
         private Animator animator;
         private AnimatorParamCache animParams;
         private PlayerCombat combat;
@@ -70,6 +75,12 @@ namespace TowerDefense.Player
 
             // Bloqueia ataque enquanto defende
             if (combat != null) combat.enabled = !active;
+        }
+
+        public void OnDamageBlocked(int amount)
+        {
+            if (blockSound != null)
+                AudioSource.PlayClipAtPoint(blockSound, transform.position, blockVolume);
         }
     }
 }
