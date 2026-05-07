@@ -190,6 +190,8 @@ namespace TowerDefense.Enemies
 
             // Recompensa de ouro pelo kill
             GameManager.Instance?.AddGold(goldReward);
+            // Notifica o WaveManager pra contar a baixa
+            WaveManager.Instance?.RegisterEnemyDefeated();
             // Health.cs destrói o GameObject após o destroyDelay
         }
 
