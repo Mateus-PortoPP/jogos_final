@@ -134,8 +134,13 @@ namespace TowerDefense.Player
         {
             if (bodyCollider == null) return true;
             Vector2 origin = new Vector2(bodyCollider.bounds.center.x, bodyCollider.bounds.min.y - 0.02f);
-            var hit = Physics2D.Raycast(origin, Vector2.down, groundCheckDistance);
-            return hit.collider != null;
+
+            // Filtra triggers (ex: CameraBounds) — só conta colisores sólidos como chão.
+            var filter = new ContactFilter2D { useTriggers = false };
+            filter.SetLayerMask(Physics2D.AllLayers);
+            var hits = new RaycastHit2D[4];
+            int hitCount = Physics2D.Raycast(origin, Vector2.down, filter, hits, groundCheckDistance);
+            return hitCount > 0;
         }
 
         // Callbacks do PlayerInput em modo Send Messages

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TowerDefense.Common;
 
 namespace TowerDefense.Player
@@ -7,8 +8,10 @@ namespace TowerDefense.Player
     /// HUD do coração: troca o sprite conforme o HP do jogador cai.
     /// heartStages[0] = vida cheia. Último índice = morto.
     /// Tamanho esperado do array = maxHealth + 1 (estado cheio + 1 por dano).
+    ///
+    /// Funciona tanto com SpriteRenderer (sprite no mundo) quanto com Image (UI/Canvas).
+    /// Pra HUD que segue a câmera, prefira usar Image dentro de um Canvas.
     /// </summary>
-    [RequireComponent(typeof(SpriteRenderer))]
     public class PlayerLifeDisplay : MonoBehaviour
     {
         [Tooltip("Health do jogador a observar (arraste o GameObject Player aqui).")]
@@ -18,10 +21,12 @@ namespace TowerDefense.Player
         [SerializeField] private Sprite[] heartStages;
 
         private SpriteRenderer sr;
+        private Image image;
 
         private void Awake()
         {
             sr = GetComponent<SpriteRenderer>();
+            image = GetComponent<Image>();
             var anim = GetComponent<Animator>();
             if (anim != null) anim.enabled = false;
         }
@@ -71,7 +76,9 @@ namespace TowerDefense.Player
                 idx = 1 + intermediate;
             }
 
-            sr.sprite = heartStages[idx];
+            Sprite chosen = heartStages[idx];
+            if (sr != null) sr.sprite = chosen;
+            if (image != null) image.sprite = chosen;
         }
     }
 }

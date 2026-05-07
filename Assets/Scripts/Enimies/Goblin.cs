@@ -32,6 +32,8 @@ namespace TowerDefense.Enemies
         [SerializeField] private float detectionRange = 5f;
         [Tooltip("Distância no eixo X em que o goblin para e ataca.")]
         [SerializeField] private float attackRange = 1.1f;
+        [Tooltip("Diferença máxima de altura (Y) entre goblin e player pra que o ataque acerte. Player em plataforma acima escapa.")]
+        [SerializeField] private float attackHeight = 1.5f;
         [SerializeField] private float attackCooldown = 1.5f;
         [SerializeField] private int damage = 1;
         [SerializeField] private string playerTag = "Player";
@@ -125,11 +127,16 @@ namespace TowerDefense.Enemies
 
             float dx = player.position.x - transform.position.x;
             float distX = Mathf.Abs(dx);
+            float distY = Mathf.Abs(player.position.y - transform.position.y);
 
             // Sempre olha pro player (flip dinâmico)
             UpdateFacing(dx);
 
-            if (distX <= attackRange)
+            // Player só está em "alcance" de ataque se estiver perto em X E em Y.
+            // Plataforma acima do goblin (distY grande) faz ele NÃO atacar e voltar a perseguir.
+            bool inAttackRange = distX <= attackRange && distY <= attackHeight;
+
+            if (inAttackRange)
             {
                 // ATAQUE — para e ataca por cooldown
                 rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
