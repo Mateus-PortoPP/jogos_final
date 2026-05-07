@@ -64,6 +64,10 @@ namespace TowerDefense.Enemies
         private Knockback knockback;
         private Transform player;
         private float lastAttackTime = -999f;
+        // Quando true, o goblin foca o player (perseguir/atacar) em vez de ir pro castelo.
+        // Vira true ao tomar dano do player; sai automaticamente se o player se afasta
+        // pra fora de detectionRange.
+        private bool aggroedOnPlayer;
 
         private void Awake()
         {
@@ -74,12 +78,27 @@ namespace TowerDefense.Enemies
             health = GetComponent<Health>();
             knockback = GetComponent<Knockback>();
 
-            if (health != null) health.Died += OnDeath;
+            if (health != null)
+            {
+                health.Died += OnDeath;
+                // Tomou dano? Vai atrás do player.
+                health.Damaged += OnTookDamage;
+            }
         }
 
         private void OnDestroy()
         {
-            if (health != null) health.Died -= OnDeath;
+            if (health != null)
+            {
+                health.Died -= OnDeath;
+                health.Damaged -= OnTookDamage;
+            }
+        }
+
+        private void OnTookDamage(int current, int max)
+        {
+            // Qualquer hit faz o goblin agroar no player
+            aggroedOnPlayer = true;
         }
 
         private void Start()
@@ -110,14 +129,6 @@ namespace TowerDefense.Enemies
                 return;
             }
 
-            // Sem player na cena: fica parado
-            if (player == null)
-            {
-                rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
-                animParams.SetFloat(speedParam, 0f);
-                return;
-            }
-
             // Em knockback: não sobrescreve velocidade — deixa o impulso agir
             if (knockback != null && knockback.IsStunned)
             {
@@ -125,45 +136,66 @@ namespace TowerDefense.Enemies
                 return;
             }
 
-            float dx = player.position.x - transform.position.x;
-            float distX = Mathf.Abs(dx);
-            float distY = Mathf.Abs(player.position.y - transform.position.y);
+            // Por padrão: o objetivo do goblin é a fortaleza (esquerda do mapa).
+            float vx = -moveSpeed;
+            float animSpeedValue = moveSpeed;
+            bool focusingPlayer = false;
 
-            // Sempre olha pro player (flip dinâmico)
-            UpdateFacing(dx);
-
-            // Player só está em "alcance" de ataque se estiver perto em X E em Y.
-            // Plataforma acima do goblin (distY grande) faz ele NÃO atacar e voltar a perseguir.
-            bool inAttackRange = distX <= attackRange && distY <= attackHeight;
-
-            if (inAttackRange)
+            if (player != null)
             {
-                // ATAQUE — para e ataca por cooldown
-                rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
-                animParams.SetFloat(speedParam, 0f);
+                var playerDmg = player.GetComponent<IDamageable>();
+                bool playerAlive = playerDmg != null && !playerDmg.IsDead;
 
-                if (Time.time - lastAttackTime >= attackCooldown)
+                if (playerAlive)
                 {
-                    lastAttackTime = Time.time;
-                    animParams.SetTrigger(attackTrigger);
+                    float dx = player.position.x - transform.position.x;
+                    float distX = Mathf.Abs(dx);
+                    float distY = Mathf.Abs(player.position.y - transform.position.y);
 
-                    var dmg = player.GetComponent<IDamageable>();
-                    if (dmg != null && !dmg.IsDead) dmg.TakeDamage(damage);
+                    // Player saiu de alcance? Perde o aggro e volta pro castelo.
+                    if (aggroedOnPlayer && distX > detectionRange)
+                    {
+                        aggroedOnPlayer = false;
+                    }
+
+                    bool inAttackRange = distX <= attackRange && distY <= attackHeight;
+
+                    if (inAttackRange)
+                    {
+                        // Player no alcance de ataque: para e bate, independente de aggro
+                        focusingPlayer = true;
+                        vx = 0f;
+                        animSpeedValue = 0f;
+                        UpdateFacing(dx);
+
+                        if (Time.time - lastAttackTime >= attackCooldown)
+                        {
+                            lastAttackTime = Time.time;
+                            animParams.SetTrigger(attackTrigger);
+                            playerDmg.TakeDamage(damage);
+                        }
+                    }
+                    else if (aggroedOnPlayer && distX <= detectionRange)
+                    {
+                        // Aggrod e player dentro do alcance de detecção: persegue.
+                        focusingPlayer = true;
+                        float dirX = Mathf.Sign(dx);
+                        if (dirX == 0f) dirX = -1f;
+                        vx = dirX * moveSpeed;
+                        animSpeedValue = moveSpeed;
+                        UpdateFacing(dx);
+                    }
                 }
             }
-            else if (distX <= detectionRange)
+
+            // Quando NÃO está focando o player, vira pra esquerda (rumo à fortaleza)
+            if (!focusingPlayer && sr != null)
             {
-                // WALK — persegue o player no eixo X
-                float dirX = Mathf.Sign(dx);
-                rb.linearVelocity = new Vector2(dirX * moveSpeed, rb.linearVelocity.y);
-                animParams.SetFloat(speedParam, moveSpeed);
+                sr.flipX = spriteFacesRight;
             }
-            else
-            {
-                // IDLE — player muito longe, fica parado
-                rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
-                animParams.SetFloat(speedParam, 0f);
-            }
+
+            rb.linearVelocity = new Vector2(vx, rb.linearVelocity.y);
+            animParams.SetFloat(speedParam, animSpeedValue);
 
             if (transform.position.x <= despawnX)
             {
