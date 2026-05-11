@@ -9,6 +9,16 @@
 [Mm]emoryCaptures/
 [Rr]ecordings/
 
+# Unity auto-recovery (criado quando o editor crasha)
+[Aa]ssets/_[Rr]ecovery/
+
+# Projeto duplicado acidentalmente na raiz
+/tower_defense/
+
+# Duplicatas que o Finder do Mac cria ao copiar/colar (ex: "arquivo 2.asset")
+* [0-9].asset
+* [0-9].asset.meta
+
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
 

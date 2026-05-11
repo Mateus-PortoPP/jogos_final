@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace TowerDefense.Manager
 {
@@ -33,7 +34,7 @@ namespace TowerDefense.Manager
         [SerializeField] private int startingGold = 150;
 
         [Header("Fortaleza")]
-        [SerializeField] private int maxFortressHP = 20;
+        [SerializeField] private int maxFortressHP = 60;
 
         [Header("Waves")]
         [SerializeField] private int totalWaves = 5;
@@ -138,6 +139,7 @@ namespace TowerDefense.Manager
             if (isGameOver) return;
             isGameOver = true;
             OnGameOver?.Invoke();
+            SceneManager.LoadScene("GameOver");
         }
 
         /// <summary>

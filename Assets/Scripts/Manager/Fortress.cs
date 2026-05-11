@@ -33,11 +33,23 @@ namespace TowerDefense.Manager
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (!other.CompareTag(enemyTag)) return;
+            Debug.Log($"[Fortress] OnTriggerEnter2D — entrou: {other.name}, tag={other.tag}");
+
+            if (!other.CompareTag(enemyTag))
+            {
+                Debug.Log($"[Fortress] Ignorando {other.name} (tag {other.tag} != {enemyTag}).");
+                return;
+            }
 
             // Se o inimigo já está em processo de morte, ignora (evita registrar baixa duplicada)
             var dmg = other.GetComponent<IDamageable>();
-            if (dmg != null && dmg.IsDead) return;
+            if (dmg != null && dmg.IsDead)
+            {
+                Debug.Log($"[Fortress] {other.name} já estava morto — ignorando.");
+                return;
+            }
+
+            Debug.Log($"[Fortress] {other.name} chegou no castelo! Tirando {damagePerEnemy} HP.");
 
             // Dano à fortaleza
             GameManager.Instance?.TakeFortressDamage(damagePerEnemy);
