@@ -60,6 +60,13 @@ namespace TowerDefense.Player
         public bool IsGrounded { get; private set; }
         public bool FacingRight { get; private set; } = true;
 
+        /// <summary>Aumenta a velocidade de movimento — usado pelos upgrades do cavaleiro.</summary>
+        public void AddSpeed(float delta)
+        {
+            if (delta <= 0f) return;
+            moveSpeed += delta;
+        }
+
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();

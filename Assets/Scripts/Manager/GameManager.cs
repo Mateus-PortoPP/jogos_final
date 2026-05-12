@@ -6,25 +6,8 @@ namespace TowerDefense.Manager
 {
     /// <summary>
     /// Singleton global que controla o estado macro do jogo:
-    /// ouro do jogador, HP da fortaleza, waves, e flags de fim de jogo.
-    ///
-    /// Por que singleton:
-    /// - Existe apenas UM estado de jogo, e qualquer script (HUD, Goblin,
-    ///   Fortaleza, Tower) precisa ler/escrever nele. O singleton expõe
-    ///   GameManager.Instance pra facilitar esse acesso sem precisar arrastar
-    ///   referência manualmente em cada Inspector.
-    ///
-    /// Por que DontDestroyOnLoad:
-    /// - Nas próximas sprints vamos ter Menu → Game → Game Over como cenas
-    ///   diferentes. Persistir o GameManager entre cenas evita reinicializar
-    ///   por acidente e simplifica a lógica de "voltar ao menu sem perder estado".
-    ///
-    /// Por que eventos (System.Action):
-    /// - Pra desacoplar a UI (HUDManager) e outros sistemas do GameManager.
-    ///   O HUD se inscreve em OnGoldChanged e atualiza o texto sozinho —
-    ///   o GameManager nem sabe que existe um HUD. Isso permite trocar a UI
-    ///   sem mexer em lógica de jogo, e adicionar novos ouvintes (sons,
-    ///   achievements, etc) sem alterar este script.
+    /// ouro, HP da fortaleza, noite atual, upgrades comprados, e flags de fim.
+    /// Persiste entre cenas (DontDestroyOnLoad) — a UI se inscreve nos eventos.
     /// </summary>
     public class GameManager : MonoBehaviour
     {
@@ -36,37 +19,43 @@ namespace TowerDefense.Manager
         [Header("Fortaleza")]
         [SerializeField] private int maxFortressHP = 60;
 
-        [Header("Waves")]
-        [SerializeField] private int totalWaves = 5;
+        [Header("Noites")]
+        [SerializeField] private int totalNights = 4;
 
-        // Estado mutável — privado, exposto via property somente leitura.
+        // --- Estado mutável ---
         private int currentGold;
         private int currentFortressHP;
-        private int currentWave;
+        private int currentWave;       // wave dentro da noite atual
+        private int currentNight;      // 1..totalNights
+        private int cannonCount;       // canhões comprados (aplicados na próxima cena de gameplay)
+        private int playerUpgradeLevel;// nível acumulado de upgrade do cavaleiro
         private bool isGameOver;
         private bool isVictory;
 
-        // Properties pra leitura externa (não permitem escrita direta de fora).
+        // --- Properties read-only ---
         public int CurrentGold => currentGold;
         public int CurrentFortressHP => currentFortressHP;
         public int MaxFortressHP => maxFortressHP;
         public int CurrentWave => currentWave;
-        public int TotalWaves => totalWaves;
+        public int CurrentNight => currentNight;
+        public int TotalNights => totalNights;
+        public int CannonCount => cannonCount;
+        public int PlayerUpgradeLevel => playerUpgradeLevel;
         public bool IsGameOver => isGameOver;
         public bool IsVictory => isVictory;
 
-        // Eventos: outros scripts se inscrevem pra reagir a mudanças.
+        // --- Eventos ---
         public event Action<int> OnGoldChanged;
         public event Action<int, int> OnFortressHPChanged;
-        public event Action<int, int> OnWaveChanged;
+        public event Action<int, int> OnWaveChanged;       // (waveIndex, totalWavesNaNoite)
+        public event Action<int, int> OnNightChanged;      // (currentNight, totalNights)
+        public event Action<int> OnCannonCountChanged;
+        public event Action<int> OnPlayerUpgradeChanged;
         public event Action OnGameOver;
         public event Action OnVictory;
 
         private void Awake()
         {
-            // Garante que existe apenas uma instância. Se já houver outra,
-            // este GameObject duplicado se autodestrói (acontece quando se
-            // volta pra cena que tem o GameManager pré-colocado).
             if (Instance != null && Instance != this)
             {
                 Destroy(gameObject);
@@ -78,10 +67,6 @@ namespace TowerDefense.Manager
             ResetGame();
         }
 
-        /// <summary>
-        /// Adiciona ouro ao jogador (ex: por matar inimigo, completar wave).
-        /// Dispara OnGoldChanged pra UI atualizar.
-        /// </summary>
         public void AddGold(int amount)
         {
             if (amount <= 0) return;
@@ -89,11 +74,6 @@ namespace TowerDefense.Manager
             OnGoldChanged?.Invoke(currentGold);
         }
 
-        /// <summary>
-        /// Tenta gastar uma quantia de ouro. Retorna true se conseguiu (tinha
-        /// saldo suficiente), false caso contrário. Útil pra construir torres,
-        /// comprar upgrades, etc.
-        /// </summary>
         public bool SpendGold(int amount)
         {
             if (amount <= 0) return true;
@@ -103,10 +83,6 @@ namespace TowerDefense.Manager
             return true;
         }
 
-        /// <summary>
-        /// Aplica dano à fortaleza (ex: quando um inimigo chega ao despawn).
-        /// Se o HP zerar, dispara automaticamente o Game Over.
-        /// </summary>
         public void TakeFortressDamage(int amount)
         {
             if (isGameOver || amount <= 0) return;
@@ -120,20 +96,50 @@ namespace TowerDefense.Manager
         }
 
         /// <summary>
-        /// Avança pra próxima wave. Notifica via OnWaveChanged.
-        /// Se atingiu a totalWaves, isso é responsabilidade do WaveManager
-        /// chamar TriggerVictory — este método só incrementa o contador.
+        /// WaveManager chama isso ao iniciar cada onda DENTRO de uma noite.
+        /// Reseta o contador no início da cena de gameplay quando muda de noite.
         /// </summary>
-        public void StartNewWave()
+        public void StartNewWave(int wavesPerNight)
         {
             currentWave++;
-            OnWaveChanged?.Invoke(currentWave, totalWaves);
+            OnWaveChanged?.Invoke(currentWave, wavesPerNight);
+        }
+
+        /// <summary>Overload mantido por compat — usado pelo WaveManager atual até a task #18.</summary>
+        public void StartNewWave() => StartNewWave(0);
+
+        /// <summary>
+        /// Avança para a próxima noite. Reseta contador de ondas.
+        /// Chamado pelo fluxo de cenas (após upgrade ou após cutscene).
+        /// </summary>
+        public void AdvanceNight()
+        {
+            currentNight++;
+            currentWave = 0;
+            OnNightChanged?.Invoke(currentNight, totalNights);
         }
 
         /// <summary>
-        /// Força o estado de Game Over (ex: HP da fortaleza zerou, ou outra
-        /// condição de derrota). Dispara OnGameOver pra a UI mostrar a tela.
+        /// Reseta o contador de ondas (chamado pelo WaveManager no Start
+        /// se a cena foi recarregada para uma noite nova).
         /// </summary>
+        public void ResetWaveCounter()
+        {
+            currentWave = 0;
+        }
+
+        public void AddCannon()
+        {
+            cannonCount++;
+            OnCannonCountChanged?.Invoke(cannonCount);
+        }
+
+        public void AddPlayerUpgrade()
+        {
+            playerUpgradeLevel++;
+            OnPlayerUpgradeChanged?.Invoke(playerUpgradeLevel);
+        }
+
         public void TriggerGameOver()
         {
             if (isGameOver) return;
@@ -142,10 +148,6 @@ namespace TowerDefense.Manager
             SceneManager.LoadScene("GameOver");
         }
 
-        /// <summary>
-        /// Marca vitória (ex: WaveManager terminou todas as waves sem perder).
-        /// Dispara OnVictory pra a UI mostrar a tela de vitória.
-        /// </summary>
         public void TriggerVictory()
         {
             if (isVictory || isGameOver) return;
@@ -154,22 +156,26 @@ namespace TowerDefense.Manager
         }
 
         /// <summary>
-        /// Volta o jogo ao estado inicial: ouro reseta pra startingGold,
-        /// HP da fortaleza pra max, wave zerada, flags limpos.
-        /// Útil pro botão "Tentar de novo" na tela de Game Over.
+        /// Reset completo — usado pelo botão "Tentar de novo" do Game Over
+        /// ou ao voltar do menu inicial.
         /// </summary>
         public void ResetGame()
         {
             currentGold = startingGold;
             currentFortressHP = maxFortressHP;
             currentWave = 0;
+            currentNight = 1;
+            cannonCount = 0;
+            playerUpgradeLevel = 0;
             isGameOver = false;
             isVictory = false;
 
-            // Notifica os ouvintes pra UI redesenhar com os valores iniciais.
             OnGoldChanged?.Invoke(currentGold);
             OnFortressHPChanged?.Invoke(currentFortressHP, maxFortressHP);
-            OnWaveChanged?.Invoke(currentWave, totalWaves);
+            OnWaveChanged?.Invoke(currentWave, 0);
+            OnNightChanged?.Invoke(currentNight, totalNights);
+            OnCannonCountChanged?.Invoke(cannonCount);
+            OnPlayerUpgradeChanged?.Invoke(playerUpgradeLevel);
         }
     }
 }

@@ -55,6 +55,13 @@ namespace TowerDefense.Player
             controller = GetComponent<PlayerController>();
         }
 
+        /// <summary>Aumenta o dano por golpe — usado pelos upgrades do cavaleiro.</summary>
+        public void AddDamage(int delta)
+        {
+            if (delta <= 0) return;
+            damage += delta;
+        }
+
         public void OnAttack(InputValue value)
         {
             Debug.Log($"[PlayerCombat] OnAttack chamado. isPressed={value.isPressed}");

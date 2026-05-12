@@ -7,55 +7,56 @@ using UnityEngine.InputSystem;
 namespace TowerDefense.Manager
 {
     /// <summary>
-    /// Singleton que controla as ondas de inimigos.
+    /// Controla as ondas de inimigos em UMA cena de gameplay.
     ///
-    /// - O jogador inicia a próxima onda manualmente (tecla R por enquanto).
-    /// - Os inimigos da onda spawnam escalonados no tempo (intervalo configurável).
-    /// - A onda só é considerada "completa" quando todos foram spawnados E todos
-    ///   foram derrotados (ou chegaram no castelo — o Goblin chama
-    ///   RegisterEnemyDefeated nos dois casos).
-    /// - Ao completar onda: bônus de ouro pelo GameManager.
-    /// - Após a última onda: dispara TriggerVictory no GameManager.
+    /// Configuração de ondas — duas opções (mutuamente exclusivas):
+    ///   A) Array 'nightConfigs' (preferido): 1 WaveSet por noite. No Start, lê
+    ///      GameManager.CurrentNight e usa o WaveSet correspondente. Permite
+    ///      a mesma cena (Gameplay_Interno) servir N1 e N2 com ondas diferentes.
+    ///   B) Lista 'waves' (legado): usada se nightConfigs estiver vazio.
+    ///      Compatibilidade com a cena antiga; remova quando migrar.
+    ///
+    /// NÃO usa DontDestroyOnLoad — é scene-level, recriado a cada carregamento.
     /// </summary>
     public class WaveManager : MonoBehaviour
     {
         public static WaveManager Instance { get; private set; }
 
-        [Header("Configuração das Ondas")]
-        [Tooltip("Lista das ondas. Configure size = 5 e ajuste cada item.")]
+        [Header("Configuração por noite (preferido)")]
+        [Tooltip("1 WaveSet por noite. Index 0 = noite 1. Se vazio, cai pro fallback 'waves' abaixo.")]
+        [SerializeField] private WaveSet[] nightConfigs;
+
+        [Header("Configuração legada (fallback)")]
         [SerializeField] private List<WaveData> waves = new List<WaveData>();
 
         [Header("Spawn")]
-        [Tooltip("Onde os inimigos aparecem (geralmente um Empty na borda direita do mapa).")]
         [SerializeField] private Transform spawnPoint;
 
         [Header("Recompensa")]
-        [Tooltip("Ouro extra dado ao completar uma onda inteira.")]
         [SerializeField] private int goldBonusPerWave = 25;
 
         [Header("Input")]
-        [Tooltip("Tecla pra iniciar a próxima onda. Temporário — depois trocamos por botão de UI.")]
-        [SerializeField] private Key startWaveKey = Key.R;
+        [Tooltip("Tecla pra iniciar a próxima onda. Default: Enter.")]
+        [SerializeField] private bool allowKeyboardStart = true;
+        [SerializeField] private Key startWaveKey = Key.Enter;
+        [SerializeField] private Key startWaveKeyAlt = Key.NumpadEnter;
 
-        // -1 = ainda não começou nenhuma onda. 0 = primeira onda em andamento, etc.
+        // Lista efetiva de ondas usada em runtime (vinda do nightConfigs ou do waves)
+        private List<WaveData> activeWaves = new List<WaveData>();
+
         private int currentWaveIndex = -1;
         private int enemiesAlive = 0;
         private bool isWaveActive = false;
         private bool allWavesCompleted = false;
-        // Marca quando o spawn da onda atual terminou (todos foram instanciados).
-        // Sem isso, se um goblin morrer ANTES do último spawnar, completaríamos a
-        // onda cedo demais.
         private bool waveSpawnFinished = false;
 
-        // Properties só-leitura pra UI / outros sistemas consultarem o estado.
         public int CurrentWaveNumber => currentWaveIndex + 1;
-        public int TotalWaves => waves.Count;
+        public int TotalWaves => activeWaves.Count;
         public bool IsWaveActive => isWaveActive;
         public int EnemiesAlive => enemiesAlive;
         public bool AllWavesCompleted => allWavesCompleted;
-        public bool CanStartNextWave => !isWaveActive && !allWavesCompleted;
+        public bool CanStartNextWave => !isWaveActive && !allWavesCompleted && activeWaves.Count > 0;
 
-        // Eventos: outros sistemas (HUD, sons, etc.) se inscrevem aqui pra reagir.
         public event Action<int> OnWaveStarted;
         public event Action<int> OnWaveCompleted;
         public event Action OnAllWavesCompleted;
@@ -64,61 +65,85 @@ namespace TowerDefense.Manager
 
         private void Awake()
         {
-            // Padrão singleton igual ao GameManager — duplicata se autodestrói.
+            // Scene-level singleton (sem DontDestroyOnLoad).
+            // Se houver duplicata na mesma cena, destrói a nova.
             if (Instance != null && Instance != this)
             {
                 Destroy(gameObject);
                 return;
             }
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+
+            ResolveActiveWaves();
+        }
+
+        private void OnDestroy()
+        {
+            if (Instance == this) Instance = null;
+        }
+
+        /// <summary>
+        /// Escolhe qual lista de ondas usar:
+        /// - Se nightConfigs tem entradas válidas, usa o índice correspondente à noite atual.
+        /// - Senão, usa o fallback 'waves'.
+        /// </summary>
+        private void ResolveActiveWaves()
+        {
+            int night = GameManager.Instance != null ? GameManager.Instance.CurrentNight : 1;
+            int idx = Mathf.Clamp(night - 1, 0, (nightConfigs != null ? nightConfigs.Length : 0) - 1);
+
+            if (nightConfigs != null && nightConfigs.Length > 0 && nightConfigs[idx] != null)
+            {
+                activeWaves = new List<WaveData>(nightConfigs[idx].waves);
+                Debug.Log($"[WaveManager] Usando WaveSet '{nightConfigs[idx].name}' ({activeWaves.Count} ondas) pra noite {night}.");
+            }
+            else
+            {
+                activeWaves = waves;
+                Debug.Log($"[WaveManager] Usando fallback 'waves' ({activeWaves.Count} ondas).");
+            }
+
+            // Garante que o GameManager comece a noite zerado.
+            GameManager.Instance?.ResetWaveCounter();
         }
 
         private void Update()
         {
-            // Tecla pra iniciar a próxima onda (versão temporária do "botão Iniciar Onda")
-            // Usa o Input System novo (Keyboard.current), porque o projeto está nessa configuração.
+            if (!allowKeyboardStart) return;
             var keyboard = Keyboard.current;
             if (keyboard == null) return;
-            if (keyboard[startWaveKey].wasPressedThisFrame && CanStartNextWave)
+            bool pressed = keyboard[startWaveKey].wasPressedThisFrame
+                        || keyboard[startWaveKeyAlt].wasPressedThisFrame;
+            if (pressed && CanStartNextWave)
             {
                 StartNextWave();
             }
         }
 
-        /// <summary>
-        /// Inicia a próxima onda da lista. Não faz nada se já estiver em andamento
-        /// ou se todas as ondas já foram completadas.
-        /// </summary>
         public void StartNextWave()
         {
             if (!CanStartNextWave) return;
 
             currentWaveIndex++;
-            if (currentWaveIndex >= waves.Count)
+            if (currentWaveIndex >= activeWaves.Count)
             {
-                // Defesa adicional — não deveria acontecer porque CanStartNextWave já checa
-                currentWaveIndex = waves.Count - 1;
+                currentWaveIndex = activeWaves.Count - 1;
                 return;
             }
 
-            // Sincroniza com o GameManager (atualiza contador global de wave)
-            GameManager.Instance?.StartNewWave();
+            GameManager.Instance?.StartNewWave(activeWaves.Count);
 
             isWaveActive = true;
             waveSpawnFinished = false;
             enemiesAlive = 0;
 
-            var wave = waves[currentWaveIndex];
-            Debug.Log($"[WaveManager] Onda {CurrentWaveNumber} iniciada — {wave.enemyCount} inimigos, intervalo {wave.spawnInterval}s.");
+            var wave = activeWaves[currentWaveIndex];
+            Debug.Log($"[WaveManager] Onda {CurrentWaveNumber}/{TotalWaves} iniciada — {wave.enemyCount} inimigos.");
 
             OnWaveStarted?.Invoke(currentWaveIndex);
             StartCoroutine(SpawnWaveEnemies(wave));
         }
 
-        /// <summary>
-        /// Corrotina que spawna os inimigos da onda atual, escalonados no tempo.
-        /// </summary>
         private IEnumerator SpawnWaveEnemies(WaveData wave)
         {
             for (int i = 0; i < wave.enemyCount; i++)
@@ -127,7 +152,6 @@ namespace TowerDefense.Manager
                 {
                     var enemy = Instantiate(wave.enemyPrefab, spawnPoint.position, Quaternion.identity);
                     enemiesAlive++;
-                    Debug.Log($"[WaveManager] Inimigo spawnado ({enemiesAlive} vivos).");
                     OnEnemySpawned?.Invoke(enemy);
                 }
                 else
@@ -135,54 +159,40 @@ namespace TowerDefense.Manager
                     Debug.LogWarning("[WaveManager] enemyPrefab ou spawnPoint nulo — ajuste no Inspector.");
                 }
 
-                // Espera o intervalo antes de spawnar o próximo (exceto após o último)
                 if (i < wave.enemyCount - 1)
                     yield return new WaitForSeconds(wave.spawnInterval);
             }
 
             waveSpawnFinished = true;
 
-            // Caso raro: se TODOS já morreram antes do último spawnar (intervalo grande
-            // + jogador OP), completa a onda agora.
             if (enemiesAlive == 0)
                 CompleteCurrentWave();
         }
 
-        /// <summary>
-        /// Chamado pelo Goblin (e qualquer outro inimigo) ao morrer ou chegar no castelo.
-        /// </summary>
         public void RegisterEnemyDefeated()
         {
             enemiesAlive = Mathf.Max(0, enemiesAlive - 1);
-            Debug.Log($"[WaveManager] Inimigo derrotado ({enemiesAlive} vivos).");
             OnEnemyDefeated?.Invoke();
 
-            // Onda só termina se todos já foram spawnados E todos foram derrotados.
             if (isWaveActive && waveSpawnFinished && enemiesAlive == 0)
             {
                 CompleteCurrentWave();
             }
         }
 
-        /// <summary>
-        /// Finaliza a onda atual: dá bônus, dispara eventos. Se era a última,
-        /// marca AllWavesCompleted e chama TriggerVictory no GameManager.
-        /// </summary>
         private void CompleteCurrentWave()
         {
             isWaveActive = false;
 
             GameManager.Instance?.AddGold(goldBonusPerWave);
-            Debug.Log($"[WaveManager] Onda {CurrentWaveNumber} completada! +{goldBonusPerWave} ouro de bônus.");
+            Debug.Log($"[WaveManager] Onda {CurrentWaveNumber} completada! +{goldBonusPerWave} ouro.");
             OnWaveCompleted?.Invoke(currentWaveIndex);
 
-            // Se era a última onda, vitória total
-            if (currentWaveIndex >= waves.Count - 1)
+            if (currentWaveIndex >= activeWaves.Count - 1)
             {
                 allWavesCompleted = true;
-                Debug.Log("[WaveManager] TODAS AS ONDAS COMPLETADAS — VITÓRIA.");
+                Debug.Log($"[WaveManager] TODAS AS ONDAS DA NOITE COMPLETADAS.");
                 OnAllWavesCompleted?.Invoke();
-                GameManager.Instance?.TriggerVictory();
             }
         }
     }

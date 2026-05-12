@@ -9,7 +9,13 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu_Inicial.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/inicial.unity
+    path: Assets/Scenes/Cutscene_Externa.unity
+    guid: d4566dbb9d0e743d7a3779507f95f9fa
+  - enabled: 1
+    path: Assets/Scenes/Gameplay_Interno.unity
+    guid: 5eb019b8c2bd54ba097cab7303f7fb2f
+  - enabled: 1
+    path: Assets/Scenes/Gameplay_Externo.unity
     guid: 73ee43b5260a9454696f0a5ce1785481
   - enabled: 1
     path: Assets/Scenes/GameOver.unity

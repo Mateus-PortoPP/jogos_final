@@ -58,5 +58,14 @@ namespace TowerDefense.Common
             Current = Mathf.Min(maxHealth, Current + amount);
             Damaged?.Invoke(Current, maxHealth);
         }
+
+        /// <summary>Aumenta o HP máximo (e o atual) — usado pelos upgrades do cavaleiro.</summary>
+        public void IncreaseMaxHealth(int delta)
+        {
+            if (delta <= 0) return;
+            maxHealth += delta;
+            Current += delta;
+            Damaged?.Invoke(Current, maxHealth);
+        }
     }
 }
