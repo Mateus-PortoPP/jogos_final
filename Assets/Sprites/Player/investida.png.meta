@@ -1,0 +1,821 @@
+fileFormatVersion: 2
+guid: 9e2e5bd3f41554e258207cb8d7d2a11a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4530637060471082536
+    second: investida_0
+  - first:
+      213: 4780417627842850635
+    second: investida_1
+  - first:
+      213: 218589962082644
+    second: investida_2
+  - first:
+      213: -2969429011829483771
+    second: investida_3
+  - first:
+      213: -8404541115370189307
+    second: investida_4
+  - first:
+      213: 7415357476050425263
+    second: investida_5
+  - first:
+      213: -8726910597479584552
+    second: investida_6
+  - first:
+      213: -4309170472246070816
+    second: investida_7
+  - first:
+      213: 6183969924225945610
+    second: investida_8
+  - first:
+      213: -8140304208492440524
+    second: investida_9
+  - first:
+      213: 4547675087520632617
+    second: investida_10
+  - first:
+      213: 527073037198732378
+    second: investida_11
+  - first:
+      213: -2980431990116419819
+    second: investida_12
+  - first:
+      213: -9205054206954936058
+    second: investida_13
+  - first:
+      213: 3683404220859468465
+    second: investida_14
+  - first:
+      213: 4038400342357555192
+    second: investida_15
+  - first:
+      213: 7174255397312714991
+    second: investida_16
+  - first:
+      213: -1172409948620825473
+    second: investida_17
+  - first:
+      213: -2146298244544444465
+    second: investida_18
+  - first:
+      213: 4213984894685031857
+    second: investida_19
+  - first:
+      213: -504913070575734746
+    second: investida_20
+  - first:
+      213: 7228420122125508976
+    second: investida_21
+  - first:
+      213: -3787519468197577168
+    second: investida_22
+  - first:
+      213: -7676200479264837656
+    second: investida_23
+  - first:
+      213: -296641869509145539
+    second: investida_24
+  - first:
+      213: 4814460516874009227
+    second: investida_25
+  - first:
+      213: 5272442348179942660
+    second: investida_26
+  - first:
+      213: 5834562799238390970
+    second: investida_27
+  - first:
+      213: -5803016174555402411
+    second: investida_28
+  - first:
+      213: 7090688631751809348
+    second: investida_29
+  - first:
+      213: -5183257595323646640
+    second: investida_30
+  - first:
+      213: -2101018260574538258
+    second: investida_31
+  - first:
+      213: -8327363719164396216
+    second: investida_32
+  - first:
+      213: -212813039702073425
+    second: investida_33
+  - first:
+      213: 5275604798833511301
+    second: investida_34
+  - first:
+      213: 2981710170161434482
+    second: investida_35
+  - first:
+      213: 5838903228568265042
+    second: investida_36
+  - first:
+      213: 4653760460058382175
+    second: investida_37
+  - first:
+      213: 3335042939340304941
+    second: investida_38
+  - first:
+      213: 9070402375949439260
+    second: investida_39
+  - first:
+      213: 1790340718334705814
+    second: investida_40
+  - first:
+      213: -9207479951817851435
+    second: investida_41
+  - first:
+      213: 2990905476872860754
+    second: investida_42
+  - first:
+      213: 4223203541245256919
+    second: investida_43
+  - first:
+      213: 3821453931248854586
+    second: investida_44
+  - first:
+      213: 7103460135482490511
+    second: investida_45
+  - first:
+      213: 9006129089509021076
+    second: investida_46
+  - first:
+      213: -4050042723861082283
+    second: investida_47
+  - first:
+      213: -3177882507525248954
+    second: investida_48
+  - first:
+      213: 6877202030820099179
+    second: investida_49
+  - first:
+      213: -1116554156087926100
+    second: investida_50
+  - first:
+      213: -2963778297402559
+    second: investida_51
+  - first:
+      213: 8254010599288758036
+    second: investida_52
+  - first:
+      213: -8416223998534619398
+    second: investida_53
+  - first:
+      213: 6519006633701569627
+    second: investida_54
+  - first:
+      213: -7376961928245288946
+    second: investida_55
+  - first:
+      213: 1710872173938306333
+    second: investida_56
+  - first:
+      213: -8296601581314912975
+    second: investida_57
+  - first:
+      213: 4265373585125946837
+    second: investida_58
+  - first:
+      213: 2679404585075214203
+    second: investida_59
+  - first:
+      213: -5744597763060346279
+    second: investida_60
+  - first:
+      213: -5927601865639943172
+    second: investida_61
+  - first:
+      213: -8249881979844536117
+    second: investida_62
+  - first:
+      213: -7698861710075239504
+    second: investida_63
+  - first:
+      213: -4309278230664906689
+    second: investida_64
+  - first:
+      213: 6598465271268481634
+    second: investida_65
+  - first:
+      213: 6703913406695146874
+    second: investida_66
+  - first:
+      213: 8795589366216705875
+    second: investida_67
+  - first:
+      213: -2925198755757598485
+    second: investida_68
+  - first:
+      213: -99170743596297579
+    second: investida_69
+  - first:
+      213: -7386628780730513561
+    second: investida_70
+  - first:
+      213: 7741095411892786893
+    second: investida_71
+  - first:
+      213: 3225254190948159113
+    second: investida_72
+  - first:
+      213: -3621005394438443561
+    second: investida_73
+  - first:
+      213: 5773137441046755743
+    second: investida_74
+  - first:
+      213: -3169153721135449203
+    second: investida_75
+  - first:
+      213: -1237584262992391760
+    second: investida_76
+  - first:
+      213: 4207970760303927054
+    second: investida_77
+  - first:
+      213: -6188080769285755008
+    second: investida_78
+  - first:
+      213: -3983868715126321994
+    second: investida_79
+  - first:
+      213: 717940356012381206
+    second: investida_80
+  - first:
+      213: -8715074399356589061
+    second: investida_81
+  - first:
+      213: 8396394299723602357
+    second: investida_82
+  - first:
+      213: -1406097654302609777
+    second: investida_83
+  - first:
+      213: 3822526598266106655
+    second: investida_84
+  - first:
+      213: 5301228327803155653
+    second: investida_85
+  - first:
+      213: 4801076249746082735
+    second: investida_86
+  - first:
+      213: 3816123232931200494
+    second: investida_87
+  - first:
+      213: 3942526801368826573
+    second: investida_88
+  - first:
+      213: 7552794079452236671
+    second: investida_89
+  - first:
+      213: -3588750543693049970
+    second: investida_90
+  - first:
+      213: 5533202376218888558
+    second: investida_91
+  - first:
+      213: 2169776615625564854
+    second: investida_92
+  - first:
+      213: 5550077364084786533
+    second: investida_93
+  - first:
+      213: -6139878136466039453
+    second: investida_94
+  - first:
+      213: -3393622530074267534
+    second: investida_95
+  - first:
+      213: 6487905898834044796
+    second: investida_96
+  - first:
+      213: -9130029342539394561
+    second: investida_97
+  - first:
+      213: 810254762848692694
+    second: investida_98
+  - first:
+      213: 1845288480270628413
+    second: investida_99
+  - first:
+      213: 8321326754227950616
+    second: investida_100
+  - first:
+      213: -3886205767657883420
+    second: investida_101
+  - first:
+      213: 1940025465330415660
+    second: investida_102
+  - first:
+      213: 5361986378374041808
+    second: investida_103
+  - first:
+      213: 9159393712005431855
+    second: investida_104
+  - first:
+      213: 3089110328598196214
+    second: investida_105
+  - first:
+      213: -6354938249007990708
+    second: investida_106
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 200
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: investida_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 982
+        width: 600
+        height: 327
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d1b66c0991ff11c0800000000000000
+      internalID: -4530637060471082536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: investida_1
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 982
+        width: 600
+        height: 327
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4fa6993184775240800000000000000
+      internalID: 4780417627842850635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: investida_2
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 982
+        width: 600
+        height: 327
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4599a017ec6c00000800000000000000
+      internalID: 218589962082644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: investida_3
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 982
+        width: 600
+        height: 327
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5071a24eb087ac6d0800000000000000
+      internalID: -2969429011829483771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: investida_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 655
+        width: 600
+        height: 327
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50ec13e72621d5b80800000000000000
+      internalID: -8404541115370189307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: investida_5
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 655
+        width: 600
+        height: 327
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa5d5821654a8e660800000000000000
+      internalID: 7415357476050425263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: investida_6
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 655
+        width: 600
+        height: 327
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8dc23aa7c09c3e680800000000000000
+      internalID: -8726910597479584552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: investida_7
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 655
+        width: 600
+        height: 327
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e1bb255940c234c0800000000000000
+      internalID: -4309170472246070816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: investida_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 328
+        width: 600
+        height: 327
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a00df2bc1efd1d550800000000000000
+      internalID: 6183969924225945610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: investida_9
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 328
+        width: 600
+        height: 327
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 434d0399374d70f80800000000000000
+      internalID: -8140304208492440524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: investida_10
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 328
+        width: 600
+        height: 327
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92f8f81c5669c1f30800000000000000
+      internalID: 4547675087520632617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: investida_11
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 328
+        width: 600
+        height: 327
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5caae0822a805700800000000000000
+      internalID: 527073037198732378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: investida_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 600
+        height: 327
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51776ef55e063a6d0800000000000000
+      internalID: -2980431990116419819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: investida_13
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 1
+        width: 600
+        height: 327
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6096c3028f3114080800000000000000
+      internalID: -9205054206954936058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: investida_14
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 1
+        width: 600
+        height: 327
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1bac0849f941e1330800000000000000
+      internalID: 3683404220859468465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: investida_15
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 1
+        width: 600
+        height: 327
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f7b90b07b74b0830800000000000000
+      internalID: 4038400342357555192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5237d28cf86d947fa83b8601e3bafb62
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":4.0},"gridSpriteSize":{"x":600.0,"y":327.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      investida_0: -4530637060471082536
+      investida_1: 4780417627842850635
+      investida_10: 4547675087520632617
+      investida_11: 527073037198732378
+      investida_12: -2980431990116419819
+      investida_13: -9205054206954936058
+      investida_14: 3683404220859468465
+      investida_15: 4038400342357555192
+      investida_2: 218589962082644
+      investida_3: -2969429011829483771
+      investida_4: -8404541115370189307
+      investida_5: 7415357476050425263
+      investida_6: -8726910597479584552
+      investida_7: -4309170472246070816
+      investida_8: 6183969924225945610
+      investida_9: -8140304208492440524
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
