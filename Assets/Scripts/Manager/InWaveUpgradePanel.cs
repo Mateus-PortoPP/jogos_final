@@ -164,6 +164,7 @@ namespace TowerDefense.Manager
             if (goldText != null) goldText.text = $"🪙 {gold}";
             if (heroCostText != null) heroCostText.text = $"🪙 {heroCost}";
             if (heroLevelText != null) heroLevelText.text = $"Nv {heroLevel}";
+            Debug.Log($"[InWaveUpgradePanel] RefreshUI — leu GM.PlayerUpgradeLevel = {heroLevel} (GM id={(GameManager.Instance != null ? GameManager.Instance.GetInstanceID() : -1)})");
             if (cannonCostText != null) cannonCostText.text = cannonEnabled ? $"🪙 {cannonCost}" : "🔒";
             if (cannonCountText != null) cannonCountText.text = $"x {cannonCount}";
 

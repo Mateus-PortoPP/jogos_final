@@ -137,6 +137,7 @@ namespace TowerDefense.Manager
         public void AddPlayerUpgrade()
         {
             playerUpgradeLevel++;
+            Debug.Log($"[GameManager] AddPlayerUpgrade chamado — novo level = {playerUpgradeLevel} (GM id={GetInstanceID()})");
             OnPlayerUpgradeChanged?.Invoke(playerUpgradeLevel);
         }
 

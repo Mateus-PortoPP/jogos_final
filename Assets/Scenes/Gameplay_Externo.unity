@@ -13626,11 +13626,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!1 &1837610187 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 800549542144331530, guid: 34e6e0de9964244dbb872c6711dfe2d3, type: 3}
-  m_PrefabInstance: {fileID: 262769457948106055}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1840934275
 GameObject:
   m_ObjectHideFlags: 0
@@ -14702,22 +14697,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Common.Knockback
   defaultStunDuration: 0.3
---- !u!114 &2105559030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2105559006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79644b7b4f05b4b5cbd4c8f14502a88e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Player.PlayerUpgradeApplier
-  damagePerLevel: 5
-  hpPerLevel: 2
-  speedPerLevel: 0.3
-  healOnUpgrade: 1
 --- !u!1 &2122257354
 GameObject:
   m_ObjectHideFlags: 0
@@ -15050,30 +15029,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1364253939625564093, guid: ca16c6a8f21e9481e816fa2db3a0d398, type: 3}
-      propertyPath: damage
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1364253939625564093, guid: ca16c6a8f21e9481e816fa2db3a0d398, type: 3}
-      propertyPath: cooldown
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1364253939625564093, guid: ca16c6a8f21e9481e816fa2db3a0d398, type: 3}
-      propertyPath: dashSpeed
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 1364253939625564093, guid: ca16c6a8f21e9481e816fa2db3a0d398, type: 3}
-      propertyPath: vfxOffset.x
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1364253939625564093, guid: ca16c6a8f21e9481e816fa2db3a0d398, type: 3}
-      propertyPath: dashDuration
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1364253939625564093, guid: ca16c6a8f21e9481e816fa2db3a0d398, type: 3}
-      propertyPath: dashVfxPrefab
-      value: 
-      objectReference: {fileID: 1837610187}
     - target: {fileID: 4389664511584211916, guid: ca16c6a8f21e9481e816fa2db3a0d398, type: 3}
       propertyPath: m_Name
       value: Player
@@ -15082,22 +15037,6 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 9110568853096262608, guid: ca16c6a8f21e9481e816fa2db3a0d398, type: 3}
-      propertyPath: stellarVfxPrefab
-      value: 
-      objectReference: {fileID: 2107100985401028209, guid: 15c6db5779cea460db59a53586e4aa18, type: 3}
-    - target: {fileID: 9110568853096262608, guid: ca16c6a8f21e9481e816fa2db3a0d398, type: 3}
-      propertyPath: stellarMaxChargeTime
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9110568853096262608, guid: ca16c6a8f21e9481e816fa2db3a0d398, type: 3}
-      propertyPath: stellarMinChargeTime
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9110568853096262608, guid: ca16c6a8f21e9481e816fa2db3a0d398, type: 3}
-      propertyPath: chargeParticlesPrefab
-      value: 
-      objectReference: {fileID: 8714474606809732987, guid: b843f0f06daa04fd1851014df40b90ce, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15105,9 +15044,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4389664511584211916, guid: ca16c6a8f21e9481e816fa2db3a0d398, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2105559018}
-    - targetCorrespondingSourceObject: {fileID: 4389664511584211916, guid: ca16c6a8f21e9481e816fa2db3a0d398, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2105559030}
   m_SourcePrefab: {fileID: 100100000, guid: ca16c6a8f21e9481e816fa2db3a0d398, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

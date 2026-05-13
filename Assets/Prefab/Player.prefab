@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 3841470226311044607}
   - component: {fileID: 8192659866071831326}
   - component: {fileID: 1364253939625564093}
+  - component: {fileID: 2160014356637685817}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -265,12 +266,30 @@ MonoBehaviour:
   targetTag: Enemy
   hitboxOffset: {x: 0.7, y: 0.4}
   hitboxSize: {x: 1.2, y: 1}
+  knockbackForce: 6
+  knockbackUp: 0.3
+  stellarMinChargeTime: 0.2
+  stellarMaxChargeTime: 7
+  stellarMinDamage: 5
+  stellarMaxDamage: 20
+  stellarHitboxSize: {x: 4, y: 1.5}
+  stellarHitboxOffset: {x: 1.8, y: 0.4}
+  stellarKnockbackForce: 16
+  stellarKnockbackUp: 0.4
+  stellarKnockbackStun: 0.45
+  stellarVfxPrefab: {fileID: 2107100985401028209, guid: 15c6db5779cea460db59a53586e4aa18, type: 3}
+  stellarVfxOffset: {x: 0.7, y: 0.3, z: 0}
+  stellarVfxSpeed: 10
+  stellarVfxLifetime: 0.8
+  chargeParticlesPrefab: {fileID: 8714474606809732987, guid: b843f0f06daa04fd1851014df40b90ce, type: 3}
+  stellarChargeClip: {fileID: 0}
+  stellarReleaseClip: {fileID: 0}
   attackTrigger: Attack
+  stellarCutTrigger: StellarCut
+  chargingBoolParam: IsChargingCut
   swordSound: {fileID: 8300000, guid: 4ecd0179ac5524d5f968468e8811c88f, type: 3}
   hitSound: {fileID: 8300000, guid: 9c29357dd54d2476ab362e98a30c5aac, type: 3}
   soundVolume: 1
-  knockbackForce: 6
-  knockbackUp: 0.3
 --- !u!114 &7617566186089785822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,6 +374,22 @@ MonoBehaviour:
   knockbackForce: 20
   knockbackUpwards: 0.3
   knockbackStun: 0.4
-  dashVfxPrefab: {fileID: 0}
+  dashVfxPrefab: {fileID: 800549542144331530, guid: 34e6e0de9964244dbb872c6711dfe2d3, type: 3}
   vfxOffset: {x: 0, y: 0, z: 0}
   activationKey: 31
+--- !u!114 &2160014356637685817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4389664511584211916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79644b7b4f05b4b5cbd4c8f14502a88e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Player.PlayerUpgradeApplier
+  damagePerLevel: 1
+  hpPerLevel: 2
+  speedPerLevel: 0.3
+  healOnUpgrade: 1
