@@ -1017,7 +1017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8500c08e8ac4a49a3852a13f711ab503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Manager.GameManager
-  startingGold: 150
+  startingGold: 0
   maxFortressHP: 60
   totalNights: 4
 --- !u!4 &1595539778

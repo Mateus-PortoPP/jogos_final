@@ -54,7 +54,7 @@ namespace TowerDefense.Enemies
 
         [Header("Recompensa")]
         [Tooltip("Ouro dado ao jogador quando o goblin morre.")]
-        [SerializeField] private int goldReward = 8;
+        [SerializeField] private int goldReward = 5;
 
         private Rigidbody2D rb;
         private SpriteRenderer sr;

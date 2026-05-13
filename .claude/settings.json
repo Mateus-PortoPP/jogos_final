@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(uv --version)",
+      "Bash(claude --version)",
+      "Bash(brew install *)",
+      "mcp__coplay-mcp__get_unity_editor_state"
+    ]
+  }
+}

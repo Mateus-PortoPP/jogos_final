@@ -14,7 +14,7 @@ namespace TowerDefense.Manager
         public static GameManager Instance { get; private set; }
 
         [Header("Economia")]
-        [SerializeField] private int startingGold = 150;
+        [SerializeField] private int startingGold = 0;
 
         [Header("Fortaleza")]
         [SerializeField] private int maxFortressHP = 60;
