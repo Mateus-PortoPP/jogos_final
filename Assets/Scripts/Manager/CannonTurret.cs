@@ -4,22 +4,35 @@ using TowerDefense.Common;
 namespace TowerDefense.Manager
 {
     /// <summary>
-    /// Canhão fixo que detecta o inimigo mais próximo dentro do range e atira projéteis.
-    /// Cooldown entre tiros configurável. Não persegue — só atira na direção do alvo
-    /// no momento do tiro.
+    /// Canhão fixo (base estática) com cano rotativo (barrelTransform) que aponta
+    /// pro inimigo mais próximo dentro do range. Atira projéteis com cooldown.
     ///
     /// Setup do prefab:
-    ///   - Sprite Renderer com a arte do canhão
-    ///   - (opcional) Animator
-    ///   - este script
-    ///   - referência ao projectilePrefab (que tem CannonProjectile + Rigidbody2D + Collider2D trigger)
-    ///   - firePoint = transform empty no "bico" do canhão (de onde o projétil sai)
+    ///   - Root: SpriteRenderer da BASE + este script
+    ///   - Filho 'Barrel': empty Transform na junta (ponto de rotação)
+    ///     - Filho 'CanoSprite': SpriteRenderer do cano (posicionado com o "mount"
+    ///       coincidindo com o pivot do Barrel)
+    ///     - Filho 'FirePoint': empty Transform no bico do cano
+    ///   - 'barrelTransform' aponta pro filho Barrel
+    ///   - 'firePoint' aponta pro FirePoint (filho de Barrel pra acompanhar a rotação)
+    ///
+    /// barrelAngleOffset compensa a orientação default do sprite:
+    ///   - Se o sprite do cano "olha pra direita" no editor: offset = 0°
+    ///   - Se o sprite olha pra esquerda: offset = 180°
     /// </summary>
     public class CannonTurret : MonoBehaviour
     {
         [Header("Detecção")]
         [SerializeField] private float range = 8f;
         [SerializeField] private string targetTag = "Enemy";
+
+        [Header("Cano (rotaciona)")]
+        [Tooltip("Transform do cano que rotaciona pra apontar no inimigo. Pivot deve estar na junta com a base.")]
+        [SerializeField] private Transform barrelTransform;
+        [Tooltip("Ângulo (graus) somado à rotação. Use 180 se o sprite do cano olha pra esquerda por padrão.")]
+        [SerializeField] private float barrelAngleOffset = 180f;
+        [Tooltip("Velocidade de rotação (graus/seg). 0 = instantâneo.")]
+        [SerializeField] private float barrelTurnSpeed = 720f;
 
         [Header("Tiro")]
         [SerializeField] private GameObject projectilePrefab;
@@ -29,16 +42,34 @@ namespace TowerDefense.Manager
         [SerializeField] private int projectileDamage = 20;
 
         private float lastFireTime = -999f;
+        private Transform currentTarget;
 
         private void Update()
         {
+            currentTarget = FindClosestEnemy();
+            if (currentTarget != null) AimAt(currentTarget);
+
             if (Time.time - lastFireTime < fireCooldown) return;
-
-            var target = FindClosestEnemy();
-            if (target == null) return;
-
-            Fire(target);
+            if (currentTarget == null) return;
+            Fire(currentTarget);
             lastFireTime = Time.time;
+        }
+
+        private void AimAt(Transform target)
+        {
+            if (barrelTransform == null) return;
+            Vector2 dir = (Vector2)(target.position - barrelTransform.position);
+            if (dir.sqrMagnitude < 0.0001f) return;
+            float targetAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + barrelAngleOffset;
+            Quaternion desired = Quaternion.Euler(0, 0, targetAngle);
+            if (barrelTurnSpeed <= 0f)
+            {
+                barrelTransform.rotation = desired;
+            }
+            else
+            {
+                barrelTransform.rotation = Quaternion.RotateTowards(barrelTransform.rotation, desired, barrelTurnSpeed * Time.deltaTime);
+            }
         }
 
         private Transform FindClosestEnemy()

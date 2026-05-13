@@ -3,37 +3,58 @@ using UnityEngine;
 namespace TowerDefense.Manager
 {
     /// <summary>
-    /// Instancia canhões no início da cena de gameplay baseado em GameManager.CannonCount.
+    /// Instancia canhões nos spawn points conforme GameManager.CannonCount cresce.
     ///
-    /// Setup na cena:
-    ///   - GameObject vazio com este script
-    ///   - 'spawnPoints' = array de Transforms (pontos pré-determinados no mapa)
+    /// Comportamento:
+    ///   - Start: spawna os canhões já comprados (se o jogador veio de uma cena anterior).
+    ///   - OnCannonCountChanged: spawna o canhão novo imediatamente na próxima plataforma livre.
+    ///   - Não despawna canhões (CannonCount só sobe).
+    ///   - Ordem: spawnPoints[0] = primeiro canhão (esquerda → direita).
+    ///
+    /// Setup:
+    ///   - 'spawnPoints' = Transforms pré-determinados em cada plataforma
     ///   - 'cannonPrefab' = prefab do canhão (com CannonTurret)
-    ///
-    /// Lógica: instancia min(CannonCount, spawnPoints.Length) canhões nos primeiros
-    /// spawn points. Cada upgrade compra adiciona +1 canhão até esgotar slots.
     /// </summary>
     public class CannonSpawner : MonoBehaviour
     {
         [SerializeField] private GameObject cannonPrefab;
         [SerializeField] private Transform[] spawnPoints;
 
+        private int spawnedCount;
+
         private void Start()
+        {
+            SyncCannons();
+            if (GameManager.Instance != null)
+                GameManager.Instance.OnCannonCountChanged += HandleCountChanged;
+        }
+
+        private void OnDestroy()
+        {
+            if (GameManager.Instance != null)
+                GameManager.Instance.OnCannonCountChanged -= HandleCountChanged;
+        }
+
+        private void HandleCountChanged(int newCount) => SyncCannons();
+
+        private void SyncCannons()
         {
             if (cannonPrefab == null || spawnPoints == null || spawnPoints.Length == 0) return;
 
-            int count = GameManager.Instance != null ? GameManager.Instance.CannonCount : 0;
-            int spawn = Mathf.Min(count, spawnPoints.Length);
+            int target = GameManager.Instance != null ? GameManager.Instance.CannonCount : 0;
+            int maxSpawn = Mathf.Min(target, spawnPoints.Length);
 
-            for (int i = 0; i < spawn; i++)
+            while (spawnedCount < maxSpawn)
             {
-                if (spawnPoints[i] == null) continue;
-                Instantiate(cannonPrefab, spawnPoints[i].position, Quaternion.identity, spawnPoints[i]);
+                var sp = spawnPoints[spawnedCount];
+                spawnedCount++;
+                if (sp == null) continue;
+                Instantiate(cannonPrefab, sp.position, Quaternion.identity, sp);
             }
 
-            if (count > spawnPoints.Length)
+            if (target > spawnPoints.Length)
             {
-                Debug.LogWarning($"[CannonSpawner] Player tem {count} canhões mas só há {spawnPoints.Length} slots na cena.");
+                Debug.LogWarning($"[CannonSpawner] Player tem {target} canhões mas só há {spawnPoints.Length} slots na cena.");
             }
         }
 

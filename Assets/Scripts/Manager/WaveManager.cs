@@ -10,14 +10,12 @@ namespace TowerDefense.Manager
     /// <summary>
     /// Controla as ondas de inimigos em UMA cena de gameplay.
     ///
-    /// Fluxo de uma cena (ex: Gameplay_Interno com N1 e N2):
-    ///   - Awake: escolhe WaveSet baseado em GameManager.CurrentNight
+    /// Fluxo de uma cena:
+    ///   - Awake: escolhe WaveSet baseado em GameManager.CurrentNight (uma noite por cena)
     ///   - Start: contagem regressiva → primeira onda inicia sozinha
-    ///   - Onda termina → InWaveUpgradePanel aparece → jogador aperta Enter → próxima onda (com countdown)
-    ///   - Última onda da noite atual + existe próxima noite no mesmo nightConfigs?
-    ///       → Auto-advance: chama GameManager.AdvanceNight() e troca activeWaves pelo WaveSet da próxima noite.
-    ///         O painel ainda aparece, jogador pressiona Enter, continua jogando.
-    ///   - Última onda da última noite desta cena → AllWavesCompleted=true → NightEndController/DoorTrigger.
+    ///   - Onda termina → InWaveUpgradePanel aparece → Enter → próxima onda (com countdown)
+    ///   - Última onda → AllWavesCompleted=true → NightEndController/DoorTrigger
+    ///     cuidam da transição pra próxima cena.
     /// </summary>
     public class WaveManager : MonoBehaviour
     {
@@ -175,27 +173,47 @@ namespace TowerDefense.Manager
             isCountingDown = false;
 
             var wave = activeWaves[currentWaveIndex];
-            Debug.Log($"[WaveManager] Onda {CurrentWaveNumber}/{TotalWaves} iniciada — {wave.enemyCount} inimigos.");
+            Debug.Log($"[WaveManager] Onda {CurrentWaveNumber}/{TotalWaves} iniciada.");
             StartCoroutine(SpawnWaveEnemies(wave));
         }
 
         private IEnumerator SpawnWaveEnemies(WaveData wave)
         {
-            for (int i = 0; i < wave.enemyCount; i++)
+            // Calcula o total de inimigos pra saber quando inserir o WaitForSeconds
+            // entre spawns (não queremos esperar depois do último).
+            int totalToSpawn = 0;
+            if (wave.enemies != null)
+                for (int i = 0; i < wave.enemies.Count; i++)
+                    if (wave.enemies[i] != null) totalToSpawn += Mathf.Max(0, wave.enemies[i].count);
+
+            if (totalToSpawn == 0)
             {
-                if (wave.enemyPrefab != null && spawnPoint != null)
+                Debug.LogWarning("[WaveManager] Wave sem inimigos configurados — ajuste 'enemies' no WaveSet.");
+                waveSpawnFinished = true;
+                if (enemiesAlive == 0) CompleteCurrentWave();
+                yield break;
+            }
+
+            int spawnedSoFar = 0;
+            for (int g = 0; g < wave.enemies.Count; g++)
+            {
+                var group = wave.enemies[g];
+                if (group == null || group.prefab == null || group.count <= 0) continue;
+
+                for (int i = 0; i < group.count; i++)
                 {
-                    var enemy = Instantiate(wave.enemyPrefab, spawnPoint.position, Quaternion.identity);
+                    if (spawnPoint == null)
+                    {
+                        Debug.LogWarning("[WaveManager] spawnPoint nulo — ajuste no Inspector.");
+                        break;
+                    }
+                    var enemy = Instantiate(group.prefab, spawnPoint.position, Quaternion.identity);
                     enemiesAlive++;
                     OnEnemySpawned?.Invoke(enemy);
+                    spawnedSoFar++;
+                    if (spawnedSoFar < totalToSpawn)
+                        yield return new WaitForSeconds(wave.spawnInterval);
                 }
-                else
-                {
-                    Debug.LogWarning("[WaveManager] enemyPrefab ou spawnPoint nulo — ajuste no Inspector.");
-                }
-
-                if (i < wave.enemyCount - 1)
-                    yield return new WaitForSeconds(wave.spawnInterval);
             }
 
             waveSpawnFinished = true;
@@ -217,41 +235,23 @@ namespace TowerDefense.Manager
 
         private void CompleteCurrentWave()
         {
+            // Guarda contra double-complete (race entre RegisterEnemyDefeated e o
+            // checkpoint final do SpawnWaveEnemies quando todos morrem antes do
+            // spawn terminar).
+            if (!isWaveActive) return;
             isWaveActive = false;
             GameManager.Instance?.AddGold(goldBonusPerWave);
             Debug.Log($"[WaveManager] Onda {CurrentWaveNumber} completada! +{goldBonusPerWave} ouro.");
 
-            int completedIdx = currentWaveIndex;
-            bool isLastOfNight = currentWaveIndex >= activeWaves.Count - 1;
-
-            if (isLastOfNight)
+            // Set AllWavesCompleted ANTES de disparar OnWaveCompleted, pra UI
+            // (InWaveUpgradePanel) saber que não deve aparecer na última onda.
+            if (currentWaveIndex >= activeWaves.Count - 1)
             {
-                // Próxima noite configurada nesta cena? Auto-advance pra continuar
-                // no mesmo cenário sem trocar de cena.
-                int curNight = GameManager.Instance != null ? GameManager.Instance.CurrentNight : 1;
-                int nextNightIdx = curNight; // 0-based pra noite seguinte (curNight é 1-based)
-                bool hasNextNightInScene = nightConfigs != null
-                    && nextNightIdx >= 0 && nextNightIdx < nightConfigs.Length
-                    && nightConfigs[nextNightIdx] != null;
-
-                if (hasNextNightInScene)
-                {
-                    GameManager.Instance?.AdvanceNight();
-                    activeWaves = new List<WaveData>(nightConfigs[nextNightIdx].waves);
-                    currentWaveIndex = -1;
-                    waveSpawnFinished = false;
-                    Debug.Log($"[WaveManager] Auto-advance pra noite {curNight + 1} ({activeWaves.Count} ondas).");
-                    OnWaveCompleted?.Invoke(completedIdx);
-                    return;
-                }
-
-                // Última noite desta cena: marca como completed ANTES de disparar
-                // OnWaveCompleted, pra UI (painel) saber que não deve aparecer.
                 allWavesCompleted = true;
                 Debug.Log("[WaveManager] TODAS AS ONDAS DA NOITE COMPLETADAS.");
             }
 
-            OnWaveCompleted?.Invoke(completedIdx);
+            OnWaveCompleted?.Invoke(currentWaveIndex);
             if (allWavesCompleted) OnAllWavesCompleted?.Invoke();
         }
     }

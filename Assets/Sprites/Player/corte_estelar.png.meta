@@ -1,0 +1,571 @@
+fileFormatVersion: 2
+guid: 1cec0ecfbf9c54e91aa818991e2cf944
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -492735465004050062
+    second: corte_estelar_0
+  - first:
+      213: -7925739312268543138
+    second: corte_estelar_1
+  - first:
+      213: -2982442981485397947
+    second: corte_estelar_2
+  - first:
+      213: -4970187065789362925
+    second: corte_estelar_3
+  - first:
+      213: -5216207131475665715
+    second: corte_estelar_4
+  - first:
+      213: 9091039820619636591
+    second: corte_estelar_5
+  - first:
+      213: 3950370468654123602
+    second: corte_estelar_6
+  - first:
+      213: 4864851566649440450
+    second: corte_estelar_7
+  - first:
+      213: -8456722951174109535
+    second: corte_estelar_8
+  - first:
+      213: -7431455888811476454
+    second: corte_estelar_9
+  - first:
+      213: -5597170386417177986
+    second: corte_estelar_10
+  - first:
+      213: 353546746096357914
+    second: corte_estelar_11
+  - first:
+      213: -5676752192424533616
+    second: corte_estelar_12
+  - first:
+      213: -6813397018276473674
+    second: corte_estelar_13
+  - first:
+      213: 5043247611359783710
+    second: corte_estelar_14
+  - first:
+      213: -367944467535251365
+    second: corte_estelar_15
+  - first:
+      213: 3767839144367952318
+    second: corte_estelar_16
+  - first:
+      213: -1372893436286236149
+    second: corte_estelar_17
+  - first:
+      213: 2644360707172232759
+    second: corte_estelar_18
+  - first:
+      213: 5037991268611285331
+    second: corte_estelar_19
+  - first:
+      213: -2490671032502693846
+    second: corte_estelar_20
+  - first:
+      213: 8146982856919600639
+    second: corte_estelar_21
+  - first:
+      213: 6641732396423734969
+    second: corte_estelar_22
+  - first:
+      213: 886272076163109269
+    second: corte_estelar_23
+  - first:
+      213: 4349310883494838238
+    second: corte_estelar_24
+  - first:
+      213: 1038014836154311166
+    second: corte_estelar_25
+  - first:
+      213: -1024825252788638494
+    second: corte_estelar_26
+  - first:
+      213: 8336996935604211983
+    second: corte_estelar_27
+  - first:
+      213: 7268959496384672269
+    second: corte_estelar_28
+  - first:
+      213: 5465274648689152813
+    second: corte_estelar_29
+  - first:
+      213: -2656392794028996254
+    second: corte_estelar_30
+  - first:
+      213: -3181684728012141633
+    second: corte_estelar_31
+  - first:
+      213: -3096415580300402261
+    second: corte_estelar_32
+  - first:
+      213: -7510480989980622839
+    second: corte_estelar_33
+  - first:
+      213: -5747747032182871103
+    second: corte_estelar_34
+  - first:
+      213: -1092679656325602577
+    second: corte_estelar_35
+  - first:
+      213: -58096319780823393
+    second: corte_estelar_36
+  - first:
+      213: -6225935927043036289
+    second: corte_estelar_37
+  - first:
+      213: 7183154930870077401
+    second: corte_estelar_38
+  - first:
+      213: -678565890529847623
+    second: corte_estelar_39
+  - first:
+      213: 169740560103887448
+    second: corte_estelar_40
+  - first:
+      213: -1934897114663272921
+    second: corte_estelar_41
+  - first:
+      213: -3447485883692349421
+    second: corte_estelar_42
+  - first:
+      213: -4662064059099813552
+    second: corte_estelar_43
+  - first:
+      213: 2996663387465452014
+    second: corte_estelar_44
+  - first:
+      213: 4338346757431340339
+    second: corte_estelar_45
+  - first:
+      213: -1873002420396511106
+    second: corte_estelar_46
+  - first:
+      213: 7504674190032368985
+    second: corte_estelar_47
+  - first:
+      213: -3896845998546969679
+    second: corte_estelar_48
+  - first:
+      213: 3252908123982725535
+    second: corte_estelar_49
+  - first:
+      213: 3772173892139121658
+    second: corte_estelar_50
+  - first:
+      213: 3421362251816718873
+    second: corte_estelar_51
+  - first:
+      213: 7079805213954212389
+    second: corte_estelar_52
+  - first:
+      213: 1729203881480305129
+    second: corte_estelar_53
+  - first:
+      213: -5911465576917233867
+    second: corte_estelar_54
+  - first:
+      213: -8953911280053548107
+    second: corte_estelar_55
+  - first:
+      213: -3363086993063260140
+    second: corte_estelar_56
+  - first:
+      213: 1329522225668318906
+    second: corte_estelar_57
+  - first:
+      213: -3305717422320936579
+    second: corte_estelar_58
+  - first:
+      213: -70755620956212614
+    second: corte_estelar_59
+  - first:
+      213: 8274642448094885669
+    second: corte_estelar_60
+  - first:
+      213: -9011024083000509815
+    second: corte_estelar_61
+  - first:
+      213: -6466678409227282791
+    second: corte_estelar_62
+  - first:
+      213: 5229808341251405502
+    second: corte_estelar_63
+  - first:
+      213: 7641880745634463761
+    second: corte_estelar_64
+  - first:
+      213: 9032302154237794091
+    second: corte_estelar_65
+  - first:
+      213: -9017891928105214789
+    second: corte_estelar_66
+  - first:
+      213: 1682909275762237602
+    second: corte_estelar_67
+  - first:
+      213: -8881751218480321687
+    second: corte_estelar_68
+  - first:
+      213: 3376003614141308255
+    second: corte_estelar_69
+  - first:
+      213: -1494142766375117779
+    second: corte_estelar_70
+  - first:
+      213: -7041372316019171748
+    second: corte_estelar_71
+  - first:
+      213: 6787457226483013440
+    second: corte_estelar_72
+  - first:
+      213: -426710855161681636
+    second: corte_estelar_73
+  - first:
+      213: 3771466144942683336
+    second: corte_estelar_74
+  - first:
+      213: -8878329040349474908
+    second: corte_estelar_75
+  - first:
+      213: -1952488830239056060
+    second: corte_estelar_76
+  - first:
+      213: -413648170917483509
+    second: corte_estelar_77
+  - first:
+      213: -5543710024120431358
+    second: corte_estelar_78
+  - first:
+      213: 6390584998010275511
+    second: corte_estelar_79
+  - first:
+      213: 329295616096748653
+    second: corte_estelar_80
+  - first:
+      213: 620197233808251088
+    second: corte_estelar_81
+  - first:
+      213: -5700678299554422206
+    second: corte_estelar_82
+  - first:
+      213: 6452158071066464978
+    second: corte_estelar_83
+  - first:
+      213: -4568406972071970388
+    second: corte_estelar_84
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: corte_estelar_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 444
+        width: 443
+        height: 443
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 279523884b37929f0800000000000000
+      internalID: -492735465004050062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corte_estelar_1
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 444
+        width: 443
+        height: 443
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5b72ed761e120290800000000000000
+      internalID: -7925739312268543138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corte_estelar_2
+      rect:
+        serializedVersion: 2
+        x: 886
+        y: 444
+        width: 443
+        height: 443
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 548b4b5f8eb3c96d0800000000000000
+      internalID: -2982442981485397947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corte_estelar_3
+      rect:
+        serializedVersion: 2
+        x: 1329
+        y: 444
+        width: 443
+        height: 443
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31d42646239560bb0800000000000000
+      internalID: -4970187065789362925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corte_estelar_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 500
+        height: 446
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcc9885204f4c97b0800000000000000
+      internalID: -5216207131475665715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corte_estelar_5
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 1
+        width: 380
+        height: 439
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6fd6faec8cd92e70800000000000000
+      internalID: 9091039820619636591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corte_estelar_6
+      rect:
+        serializedVersion: 2
+        x: 886
+        y: 1
+        width: 443
+        height: 443
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25a8253e20982d630800000000000000
+      internalID: 3950370468654123602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corte_estelar_7
+      rect:
+        serializedVersion: 2
+        x: 1329
+        y: 1
+        width: 443
+        height: 443
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c8742b89bc638340800000000000000
+      internalID: 4864851566649440450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: f2b968e59dc1842539eed12ac6948c41
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":2.0},"gridSpriteSize":{"x":443.0,"y":443.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      corte_estelar_0: -492735465004050062
+      corte_estelar_1: -7925739312268543138
+      corte_estelar_2: -2982442981485397947
+      corte_estelar_3: -4970187065789362925
+      corte_estelar_4: -5216207131475665715
+      corte_estelar_5: 9091039820619636591
+      corte_estelar_6: 3950370468654123602
+      corte_estelar_7: 4864851566649440450
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

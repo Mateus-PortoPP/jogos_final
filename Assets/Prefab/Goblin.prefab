@@ -218,7 +218,7 @@ MonoBehaviour:
   deathTrigger: Death
   deathSound: {fileID: 8300000, guid: eb88d8933c3ad4adab42ee51cf39707d, type: 3}
   soundVolume: 1
-  goldReward: 5
+  goldReward: 10
 --- !u!114 &4285903109228972384
 MonoBehaviour:
   m_ObjectHideFlags: 0
