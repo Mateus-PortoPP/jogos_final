@@ -21,11 +21,12 @@ namespace TowerDefense.Enemies
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(SpriteRenderer))]
     [RequireComponent(typeof(Collider2D))]
-    public class Goblin : MonoBehaviour
+    public class Goblin : MonoBehaviour, IFortressDamager
     {
         [Header("Movimento")]
         [SerializeField] private float moveSpeed = 3f;
-        [SerializeField] private float despawnX = -15f;
+        [Tooltip("Posição X muito à esquerda — fallback caso o goblin passe pela fortaleza. Normal: fortaleza captura via trigger antes disso.")]
+        [SerializeField] private float despawnX = -25f;
 
         [Header("Detecção e combate")]
         [Tooltip("Distância no eixo X em que o goblin 'acorda' e começa a perseguir.")]
@@ -55,6 +56,11 @@ namespace TowerDefense.Enemies
         [Header("Recompensa")]
         [Tooltip("Ouro dado ao jogador quando o goblin morre.")]
         [SerializeField] private int goldReward = 5;
+
+        [Header("Dano na fortaleza")]
+        [Tooltip("Quanto dano esse inimigo causa ao HP da fortaleza ao chegar nela.")]
+        [SerializeField] private int fortressDamage = 2;
+        public int FortressDamage => fortressDamage;
 
         private Rigidbody2D rb;
         private SpriteRenderer sr;

@@ -27,6 +27,9 @@ namespace TowerDefense.Manager
         [Tooltip("Index 0 = noite 1, 1 = noite 2, etc. String vazia = não auto-transiciona (DoorTrigger cuida).")]
         [SerializeField] private string[] nextSceneByNight = { "UpgradeSelect", "", "UpgradeSelect", "Victory" };
 
+        [Tooltip("Se true, avança a noite (GameManager.AdvanceNight) antes de carregar a próxima cena. Útil quando a transição leva pra cutscene e depois volta na mesma cena de gameplay com a noite seguinte.")]
+        [SerializeField] private bool advanceNightBeforeLoad = true;
+
         private bool readyToProceed;
         private string targetScene;
 
@@ -69,8 +72,10 @@ namespace TowerDefense.Manager
             if (kb.enterKey.wasPressedThisFrame || kb.numpadEnterKey.wasPressedThisFrame)
             {
                 readyToProceed = false;
+                if (advanceNightBeforeLoad) GameManager.Instance?.AdvanceNight();
                 SceneFader.GetOrCreate().FadeOutAndLoad(targetScene);
             }
         }
     }
 }
+// marker

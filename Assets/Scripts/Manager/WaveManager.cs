@@ -52,6 +52,7 @@ namespace TowerDefense.Manager
 
         private int currentWaveIndex = -1;
         private int enemiesAlive = 0;
+        private int enemiesReachedCastleThisWave = 0;
         private bool isWaveActive = false;
         private bool allWavesCompleted = false;
         private bool waveSpawnFinished = false;
@@ -150,6 +151,7 @@ namespace TowerDefense.Manager
             isWaveActive = true;
             waveSpawnFinished = false;
             enemiesAlive = 0;
+            enemiesReachedCastleThisWave = 0;
             GameManager.Instance?.StartNewWave(activeWaves.Count);
             OnWaveStarted?.Invoke(currentWaveIndex);
 
@@ -222,7 +224,20 @@ namespace TowerDefense.Manager
                 CompleteCurrentWave();
         }
 
+        /// <summary>Chamado quando o jogador (ou canhão) mata um inimigo.</summary>
         public void RegisterEnemyDefeated()
+        {
+            DecrementEnemyCount();
+        }
+
+        /// <summary>Chamado pela Fortress quando um inimigo chega no castelo. Conta como "escapado" — anula o bônus de wave limpa.</summary>
+        public void RegisterEnemyReachedCastle()
+        {
+            enemiesReachedCastleThisWave++;
+            DecrementEnemyCount();
+        }
+
+        private void DecrementEnemyCount()
         {
             enemiesAlive = Mathf.Max(0, enemiesAlive - 1);
             OnEnemyDefeated?.Invoke();
@@ -240,8 +255,19 @@ namespace TowerDefense.Manager
             // spawn terminar).
             if (!isWaveActive) return;
             isWaveActive = false;
-            GameManager.Instance?.AddGold(goldBonusPerWave);
-            Debug.Log($"[WaveManager] Onda {CurrentWaveNumber} completada! +{goldBonusPerWave} ouro.");
+
+            // Bônus de ouro só sai se a wave foi "limpa" (nenhum inimigo escapou
+            // pro castelo). Quem deixou passar inimigo perde o bônus — só ganha
+            // ouro dos kills individuais.
+            if (enemiesReachedCastleThisWave == 0 && goldBonusPerWave > 0)
+            {
+                GameManager.Instance?.AddGold(goldBonusPerWave);
+                Debug.Log($"[WaveManager] Onda {CurrentWaveNumber} COMPLETA LIMPA! +{goldBonusPerWave} ouro de bônus.");
+            }
+            else
+            {
+                Debug.Log($"[WaveManager] Onda {CurrentWaveNumber} completada ({enemiesReachedCastleThisWave} escaparam pro castelo — sem bônus).");
+            }
 
             // Set AllWavesCompleted ANTES de disparar OnWaveCompleted, pra UI
             // (InWaveUpgradePanel) saber que não deve aparecer na última onda.

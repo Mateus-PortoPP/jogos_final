@@ -25,13 +25,14 @@ namespace TowerDefense.Enemies
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(SpriteRenderer))]
     [RequireComponent(typeof(Collider2D))]
-    public class GoblinArmadura : MonoBehaviour
+    public class GoblinArmadura : MonoBehaviour, IFortressDamager
     {
         [Header("Movimento")]
         [SerializeField] private float moveSpeed = 1.8f;
         [Tooltip("Multiplicador aplicado ao moveSpeed quando o monstro está em modo Charging (atrás do player).")]
         [SerializeField] private float chargeSpeedMultiplier = 1.4f;
-        [SerializeField] private float despawnX = -15f;
+        [Tooltip("Posição X muito à esquerda — fallback caso passe pela fortaleza. Fortress.trigger pega ele antes disso.")]
+        [SerializeField] private float despawnX = -25f;
 
         [Header("Detecção e combate")]
         [SerializeField] private float detectionRange = 6f;
@@ -68,6 +69,11 @@ namespace TowerDefense.Enemies
 
         [Header("Recompensa")]
         [SerializeField] private int goldReward = 15;
+
+        [Header("Dano na fortaleza")]
+        [Tooltip("Quanto dano esse inimigo causa ao HP da fortaleza ao chegar nela. Armadura dá mais que goblin comum.")]
+        [SerializeField] private int fortressDamage = 6;
+        public int FortressDamage => fortressDamage;
 
         private enum BehaviorState { Approaching, Spotted, Charging, Dead }
         private BehaviorState behavior = BehaviorState.Approaching;

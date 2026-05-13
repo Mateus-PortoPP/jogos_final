@@ -10,22 +10,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9407a5ef4c27e451ebc06e582f4aca7f, type: 3}
-  m_Name: WaveSet_Noite2
+  m_Name: WaveSet_Externo_N3
   m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Manager.WaveSet
-  nightLabel: Noite 2
+  nightLabel: "Noite 3 (Externo \u2014 Press\xE3o crescente)"
   waves:
   - waveName: onda 1
     spawnInterval: 0.5
     enemies:
     - prefab: {fileID: 3101165650726596048, guid: 3fc8ca17fcaf4436a8365d85afc8c1e4, type: 3}
-      count: 1
-  - waveName: onda 2
+      count: 4
+    - prefab: {fileID: 6289584143474994543, guid: 71fc525900ebb488bbf92aa311a3178b, type: 3}
+      count: 2
+  - waveName: "onda 2 \u2014 swarm"
+    spawnInterval: 0.4
+    enemies:
+    - prefab: {fileID: 3101165650726596048, guid: 3fc8ca17fcaf4436a8365d85afc8c1e4, type: 3}
+      count: 7
+  - waveName: "onda 3 \u2014 armaduras"
     spawnInterval: 0.5
     enemies:
     - prefab: {fileID: 3101165650726596048, guid: 3fc8ca17fcaf4436a8365d85afc8c1e4, type: 3}
-      count: 2
-  - waveName: onda 3
-    spawnInterval: 0.5
+      count: 4
+    - prefab: {fileID: 6289584143474994543, guid: 71fc525900ebb488bbf92aa311a3178b, type: 3}
+      count: 3
+  - waveName: "onda 4 \u2014 final"
+    spawnInterval: 0.4
     enemies:
     - prefab: {fileID: 3101165650726596048, guid: 3fc8ca17fcaf4436a8365d85afc8c1e4, type: 3}
-      count: 2
+      count: 6
+    - prefab: {fileID: 6289584143474994543, guid: 71fc525900ebb488bbf92aa311a3178b, type: 3}
+      count: 4

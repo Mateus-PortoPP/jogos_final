@@ -18,7 +18,7 @@ namespace TowerDefense.Manager
     [RequireComponent(typeof(Collider2D))]
     public class Fortress : MonoBehaviour
     {
-        [Tooltip("Dano dado ao HP da fortaleza por cada inimigo que chega.")]
+        [Tooltip("Dano padrão dado ao HP da fortaleza por cada inimigo que NÃO implementa IFortressDamager. Inimigos que implementam (Goblin, GoblinArmadura) usam o valor próprio deles.")]
         [SerializeField] private int damagePerEnemy = 1;
 
         [Tooltip("Tag dos inimigos que afetam a fortaleza.")]
@@ -42,20 +42,26 @@ namespace TowerDefense.Manager
             }
 
             // Se o inimigo já está em processo de morte, ignora (evita registrar baixa duplicada)
-            var dmg = other.GetComponent<IDamageable>();
-            if (dmg != null && dmg.IsDead)
+            var damageable = other.GetComponent<IDamageable>();
+            if (damageable != null && damageable.IsDead)
             {
                 Debug.Log($"[Fortress] {other.name} já estava morto — ignorando.");
                 return;
             }
 
-            Debug.Log($"[Fortress] {other.name} chegou no castelo! Tirando {damagePerEnemy} HP.");
+            // Cada inimigo declara seu próprio dano via IFortressDamager.
+            // Se não implementa, usa o fallback damagePerEnemy.
+            var damager = other.GetComponent<IFortressDamager>();
+            int dmg = damager != null ? damager.FortressDamage : damagePerEnemy;
+            Debug.Log($"[Fortress] {other.name} chegou no castelo! Tirando {dmg} HP.");
 
             // Dano à fortaleza
-            GameManager.Instance?.TakeFortressDamage(damagePerEnemy);
+            GameManager.Instance?.TakeFortressDamage(dmg);
 
-            // Conta como inimigo "derrotado" pra wave terminar (chegou ao castelo, mas pra wave isso é equivalente a morto)
-            WaveManager.Instance?.RegisterEnemyDefeated();
+            // Avisa o WaveManager que um inimigo escapou pro castelo.
+            // O WaveManager decrementa o count (wave pode terminar) E marca a wave
+            // como "não-limpa" pra anular o bônus de ouro.
+            WaveManager.Instance?.RegisterEnemyReachedCastle();
 
             // Remove o inimigo da cena
             Destroy(other.gameObject);

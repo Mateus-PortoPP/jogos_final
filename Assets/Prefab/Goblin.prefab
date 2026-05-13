@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Enemies.Goblin
   moveSpeed: 3
-  despawnX: -15
+  despawnX: -25
   detectionRange: 5
   attackRange: 0.5
   attackHeight: 1.5
@@ -219,6 +219,7 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: eb88d8933c3ad4adab42ee51cf39707d, type: 3}
   soundVolume: 1
   goldReward: 10
+  fortressDamage: 2
 --- !u!114 &4285903109228972384
 MonoBehaviour:
   m_ObjectHideFlags: 0
