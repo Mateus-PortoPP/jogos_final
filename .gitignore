@@ -81,6 +81,9 @@ crashlytics-build.properties
 # JetBrains Rider
 .idea/
 
+# Claude Code — config local do usuário (não compartilhar)
+.claude/settings.local.json
+
 # OS
 .DS_Store
 .DS_Store?
