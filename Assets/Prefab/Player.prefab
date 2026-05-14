@@ -391,8 +391,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79644b7b4f05b4b5cbd4c8f14502a88e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Player.PlayerUpgradeApplier
-  damagePerLevel: 1
-  hpPerLevel: 2
+  damagePerLevel: 2
+  hpPerLevel: 4
   speedPerLevel: 0.3
   healOnUpgrade: 1
 --- !u!114 &3234292179669602015

@@ -20,7 +20,7 @@ namespace TowerDefense.Manager
         [SerializeField] private int maxFortressHP = 60;
 
         [Header("Noites")]
-        [SerializeField] private int totalNights = 4;
+        [SerializeField] private int totalNights = 5;
 
         // --- Estado mutável ---
         private int currentGold;

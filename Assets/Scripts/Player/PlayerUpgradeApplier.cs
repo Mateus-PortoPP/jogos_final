@@ -18,8 +18,8 @@ namespace TowerDefense.Player
     /// </summary>
     public class PlayerUpgradeApplier : MonoBehaviour
     {
-        [SerializeField] private int damagePerLevel = 5;
-        [SerializeField] private int hpPerLevel = 2;
+        [SerializeField] private int damagePerLevel = 2;
+        [SerializeField] private int hpPerLevel = 4;
         [SerializeField] private float speedPerLevel = 0.3f;
         [Tooltip("Se true, cada compra cura o HP atual até o máximo (depois do incremento de hpPerLevel).")]
         [SerializeField] private bool healOnUpgrade = true;

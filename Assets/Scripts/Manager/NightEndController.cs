@@ -51,6 +51,14 @@ namespace TowerDefense.Manager
                 WaveManager.Instance.OnAllWavesCompleted -= HandleAllWavesCompleted;
         }
 
+        public bool HasTargetForCurrentNight()
+        {
+            int night = GameManager.Instance != null ? GameManager.Instance.CurrentNight : 1;
+            int idx = night - 1;
+            if (idx < 0 || idx >= nextSceneByNight.Length) return false;
+            return !string.IsNullOrEmpty(nextSceneByNight[idx]);
+        }
+
         private void HandleAllWavesCompleted()
         {
             int night = GameManager.Instance != null ? GameManager.Instance.CurrentNight : 1;

@@ -38,6 +38,10 @@ namespace TowerDefense.Enemies
         [SerializeField] private float attackCooldown = 1.5f;
         [SerializeField] private int damage = 1;
         [SerializeField] private string playerTag = "Player";
+        [Tooltip("Força de empurrão aplicada ao player no ataque (0 = nenhum). Boss usa pra arremessar o jogador.")]
+        [SerializeField] private float attackKnockbackForce = 0f;
+        [SerializeField] private float attackKnockbackUp = 0.4f;
+        [SerializeField] private float attackKnockbackStun = 0.25f;
 
         [Header("Visual")]
         [Tooltip("O sprite olha pra direita por padrão? Se sim, o flip espelha quando o player está à esquerda.")]
@@ -179,6 +183,16 @@ namespace TowerDefense.Enemies
                             lastAttackTime = Time.time;
                             animParams.SetTrigger(attackTrigger);
                             playerDmg.TakeDamage(damage);
+
+                            if (attackKnockbackForce > 0f)
+                            {
+                                var playerKb = player.GetComponent<Knockback>();
+                                if (playerKb != null)
+                                {
+                                    float dirX = transform.position.x < player.position.x ? 1f : -1f;
+                                    playerKb.Apply(new Vector2(dirX, attackKnockbackUp), attackKnockbackForce, attackKnockbackStun);
+                                }
+                            }
                         }
                     }
                     else if (aggroedOnPlayer && distX <= detectionRange)

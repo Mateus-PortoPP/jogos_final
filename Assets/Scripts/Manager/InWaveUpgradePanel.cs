@@ -51,11 +51,15 @@ namespace TowerDefense.Manager
         [Tooltip("Texto de dica embaixo do painel — ex: 'Pressione Enter para iniciar a próxima onda'.")]
         [SerializeField] private TextMeshProUGUI hintText;
         [SerializeField] private string hintMessage = "Pressione Enter para iniciar a próxima onda";
+        [Tooltip("Texto exibido após a ÚLTIMA onda da noite — substitui hintMessage quando AllWavesCompleted=true.")]
+        [SerializeField] private string nightEndHintMessage = "Pressione Enter para próxima noite";
 
         private float targetAlpha;
+        private NightEndController nightEnd;
 
         private void Start()
         {
+            nightEnd = FindObjectOfType<NightEndController>();
             if (panelGroup != null) panelGroup.alpha = 0f;
             targetAlpha = showBeforeFirstWave ? 1f : 0f;
 
@@ -97,13 +101,29 @@ namespace TowerDefense.Manager
             }
         }
 
-        private void HandleWaveStarted(int idx) => targetAlpha = 0f;
+        private void HandleWaveStarted(int idx)
+        {
+            targetAlpha = 0f;
+            if (hintText != null) hintText.text = hintMessage;
+        }
         private void HandleWaveCompleted(int idx)
         {
-            // Não mostra o painel se acabou de completar a ÚLTIMA onda da noite —
-            // aí entra o fluxo de fim de noite (NightEndController ou DoorTrigger).
             var wm = WaveManager.Instance;
-            if (wm != null && wm.AllWavesCompleted) return;
+            if (wm != null && wm.AllWavesCompleted)
+            {
+                // Só mostra o painel na ÚLTIMA onda se o NightEndController tem um target
+                // pra noite atual (cristal/porta cuidam de outros casos sem precisar de UI).
+                if (nightEnd != null && nightEnd.HasTargetForCurrentNight())
+                {
+                    if (hintText != null) hintText.text = nightEndHintMessage;
+                    targetAlpha = 1f;
+                }
+                else
+                {
+                    targetAlpha = 0f; // cristal/porta — não polui a tela
+                }
+                return;
+            }
             targetAlpha = 1f;
         }
 

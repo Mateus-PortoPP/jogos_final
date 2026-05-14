@@ -1019,7 +1019,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Manager.GameManager
   startingGold: 0
   maxFortressHP: 60
-  totalNights: 4
+  totalNights: 5
 --- !u!4 &1595539778
 Transform:
   m_ObjectHideFlags: 0

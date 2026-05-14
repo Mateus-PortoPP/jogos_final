@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 1857067594802911803}
   - component: {fileID: 7814932325111321171}
   - component: {fileID: 3013247151384239452}
+  - component: {fileID: 3559680319476155044}
   m_Layer: 0
   m_Name: Goblin_Boss
   m_TagString: Enemy
@@ -214,6 +215,9 @@ MonoBehaviour:
   attackCooldown: 1.2
   damage: 10
   playerTag: Player
+  attackKnockbackForce: 12
+  attackKnockbackUp: 0.4
+  attackKnockbackStun: 0.3
   spriteFacesRight: 1
   speedParam: Speed
   attackTrigger: Attack
@@ -278,3 +282,24 @@ MonoBehaviour:
   flashDuration: 0.07
   targetRenderer: {fileID: 581049160717462217}
   flashMaterial: {fileID: 2100000, guid: 0e7c0384bc3bc4d549795ad5ba99e0c9, type: 2}
+--- !u!114 &3559680319476155044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6479749089983029704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12d93f84e6dd446fbac5ed4db6d4f0a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Enemies.BossSpawnImpact
+  radius: 6
+  damage: 8
+  knockbackForce: 16
+  knockbackUp: 0.5
+  knockbackStun: 0.4
+  playerTag: Player
+  shakeCameraHeavy: 1
+  impactVfxPrefab: {fileID: 4049772628684532173, guid: 6bb73d9890fdd463ab761818f8fbf485, type: 3}
+  vfxLifetime: 1.5
