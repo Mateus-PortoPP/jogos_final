@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TowerDefense.Common;
+using TowerDefense.Manager;
 
 namespace TowerDefense.Player
 {
@@ -68,6 +69,8 @@ namespace TowerDefense.Player
 
             if (keyboard[activationKey].wasPressedThisFrame && !IsOnCooldown && !IsDashing)
             {
+                // Investida só funciona depois que o jogador tocou no Cristal Estelar (pós N2).
+                if (GameManager.Instance == null || !GameManager.Instance.IsStellarPowersUnlocked) return;
                 StartCoroutine(DashRoutine());
             }
         }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TowerDefense.Common;
+using TowerDefense.Manager;
 
 namespace TowerDefense.Player
 {
@@ -125,9 +126,12 @@ namespace TowerDefense.Player
             // Detecta o momento em que a carga cruza o threshold pra ativar o
             // feedback visual (partículas + sprite de carga + audio). Antes disso
             // o player parece normal — só "brilha" quando o Corte Estelar fica disponível.
+            // E só "brilha" se o jogador já desbloqueou o poder estelar (pós-Cristal),
+            // caso contrário segurar o botão não tem efeito especial.
             if (isCharging && !stellarReady && chargeStartTime >= 0f)
             {
-                if (Time.time - chargeStartTime >= stellarMinChargeTime)
+                bool stellarUnlocked = GameManager.Instance != null && GameManager.Instance.IsStellarPowersUnlocked;
+                if (stellarUnlocked && Time.time - chargeStartTime >= stellarMinChargeTime)
                     EnterStellarReady();
             }
         }
@@ -196,7 +200,10 @@ namespace TowerDefense.Player
             chargeStartTime = -1f;
             lastAttackTime = Time.time;
 
-            if (chargeTime >= stellarMinChargeTime)
+            // Corte Estelar só ativa se o jogador tocou no Cristal Estelar entre
+            // N2 e N3. Antes disso, mesmo segurando o botão, dispara ataque normal.
+            bool stellarUnlocked = GameManager.Instance != null && GameManager.Instance.IsStellarPowersUnlocked;
+            if (chargeTime >= stellarMinChargeTime && stellarUnlocked)
             {
                 PerformStellarCut(chargeTime);
             }

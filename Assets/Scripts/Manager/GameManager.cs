@@ -29,6 +29,7 @@ namespace TowerDefense.Manager
         private int currentNight;      // 1..totalNights
         private int cannonCount;       // canhões comprados (aplicados na próxima cena de gameplay)
         private int playerUpgradeLevel;// nível acumulado de upgrade do cavaleiro
+        private bool stellarPowersUnlocked; // Corte Estelar (LMB hold) + Investida (Q) — liberados após o Cristal Estelar
         private bool isGameOver;
         private bool isVictory;
 
@@ -41,6 +42,7 @@ namespace TowerDefense.Manager
         public int TotalNights => totalNights;
         public int CannonCount => cannonCount;
         public int PlayerUpgradeLevel => playerUpgradeLevel;
+        public bool IsStellarPowersUnlocked => stellarPowersUnlocked;
         public bool IsGameOver => isGameOver;
         public bool IsVictory => isVictory;
 
@@ -51,6 +53,7 @@ namespace TowerDefense.Manager
         public event Action<int, int> OnNightChanged;      // (currentNight, totalNights)
         public event Action<int> OnCannonCountChanged;
         public event Action<int> OnPlayerUpgradeChanged;
+        public event Action OnStellarPowersUnlocked;
         public event Action OnGameOver;
         public event Action OnVictory;
 
@@ -141,6 +144,18 @@ namespace TowerDefense.Manager
             OnPlayerUpgradeChanged?.Invoke(playerUpgradeLevel);
         }
 
+        /// <summary>
+        /// Desbloqueia o Corte Estelar (LMB hold) e a Investida (Q). Chamado quando
+        /// o jogador toca o Cristal Estelar entre N2 e N3. Idempotente.
+        /// </summary>
+        public void UnlockStellarPowers()
+        {
+            if (stellarPowersUnlocked) return;
+            stellarPowersUnlocked = true;
+            Debug.Log("[GameManager] Poderes estelares DESBLOQUEADOS — Corte Estelar (LMB hold) e Investida (Q) ativos.");
+            OnStellarPowersUnlocked?.Invoke();
+        }
+
         public void TriggerGameOver()
         {
             if (isGameOver) return;
@@ -168,6 +183,7 @@ namespace TowerDefense.Manager
             currentNight = 1;
             cannonCount = 0;
             playerUpgradeLevel = 0;
+            stellarPowersUnlocked = false;
             isGameOver = false;
             isVictory = false;
 
