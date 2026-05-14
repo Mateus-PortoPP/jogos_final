@@ -46,6 +46,7 @@ namespace TowerDefense.Manager
             if (dmg != null && !dmg.IsDead)
             {
                 dmg.TakeDamage(damage);
+                CameraShaker.Instance?.ShakeLight();
             }
             Destroy(gameObject);
         }

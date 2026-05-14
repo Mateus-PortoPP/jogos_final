@@ -24,6 +24,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Cutscene_Noite3.unity
     guid: bba40dfc2d9c40d4b0081d29581c2f91
   - enabled: 1
+    path: Assets/Scenes/Cutscene_Caverna.unity
+    guid: d8d6f79d2a3346b9869143593e6ea7c6
+  - enabled: 1
+    path: Assets/Scenes/Gameplay_Caverna.unity
+    guid: e8ab9a6959834b2b8232babf41581619
+  - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 31f2ce2b704784babad15421caee73d4
   m_configObjects:

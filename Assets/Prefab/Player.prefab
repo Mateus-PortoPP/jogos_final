@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 8192659866071831326}
   - component: {fileID: 1364253939625564093}
   - component: {fileID: 2160014356637685817}
+  - component: {fileID: 3234292179669602015}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -270,6 +271,7 @@ MonoBehaviour:
   knockbackUp: 0.3
   stellarMinChargeTime: 0.2
   stellarMaxChargeTime: 7
+  stellarCutCooldown: 5
   stellarMinDamage: 5
   stellarMaxDamage: 20
   stellarHitboxSize: {x: 4, y: 1.5}
@@ -393,3 +395,16 @@ MonoBehaviour:
   hpPerLevel: 2
   speedPerLevel: 0.3
   healOnUpgrade: 1
+--- !u!114 &3234292179669602015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4389664511584211916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b21a506a9b03c4752af225f9175c6fd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Common.CameraShakeOnDamage
+  amplitude: 0.4

@@ -163,6 +163,8 @@ namespace TowerDefense.Player
                 chargeAudioSource.volume = soundVolume;
                 chargeAudioSource.Play();
             }
+
+            CameraShaker.Instance?.StartRumble();
         }
 
         /// <summary>Aumenta o dano por golpe — usado pelos upgrades do cavaleiro.</summary>
@@ -193,6 +195,7 @@ namespace TowerDefense.Player
             bool wasReady = stellarReady;
             stellarReady = false;
             if (wasReady) animParams.SetBool(chargingBoolParam, false);
+            if (wasReady) CameraShaker.Instance?.StopRumble();
             if (chargeAudioSource != null && chargeAudioSource.isPlaying) chargeAudioSource.Stop();
 
             // Mata as partículas de carga (com pequeno delay pra terminarem suavemente)
@@ -243,6 +246,7 @@ namespace TowerDefense.Player
         private void PerformStellarCut(float chargeTime)
         {
             animParams.SetTrigger(stellarCutTrigger);
+            CameraShaker.Instance?.ShakeHeavy();
 
             if (stellarReleaseClip != null)
                 AudioSource.PlayClipAtPoint(stellarReleaseClip, transform.position, soundVolume);
