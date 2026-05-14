@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4148338755285609209}
   - component: {fileID: 4285903109228972384}
   - component: {fileID: 4040720318211764065}
+  - component: {fileID: 6238009756293769193}
   m_Layer: 0
   m_Name: Goblin
   m_TagString: Enemy
@@ -248,3 +249,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Common.Knockback
   defaultStunDuration: 0.2
+--- !u!114 &6238009756293769193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3101165650726596048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3c326beb79034d0b9fcf6a4ab1825d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Common.HitFlash
+  flashDuration: 0.07
+  targetRenderer: {fileID: 8863830909658056866}
+  flashMaterial: {fileID: 2100000, guid: 0e7c0384bc3bc4d549795ad5ba99e0c9, type: 2}

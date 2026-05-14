@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6509618215012209527}
   - component: {fileID: 4673485037928680159}
   - component: {fileID: 1195519867922567986}
+  - component: {fileID: 4664426950830477602}
   m_Layer: 0
   m_Name: Goblin_Armadura
   m_TagString: Enemy
@@ -256,3 +257,18 @@ MonoBehaviour:
   soundVolume: 1
   goldReward: 20
   fortressDamage: 6
+--- !u!114 &4664426950830477602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6289584143474994543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3c326beb79034d0b9fcf6a4ab1825d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Common.HitFlash
+  flashDuration: 0.07
+  targetRenderer: {fileID: 4423136592293874525}
+  flashMaterial: {fileID: 2100000, guid: 0e7c0384bc3bc4d549795ad5ba99e0c9, type: 2}
