@@ -148,9 +148,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bc56f32116924f85861f4af3ad60f4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Manager.CutsceneController
-  captionContent: "Numa noite de eclipse, os goblins furaram as muralhas do castelo.\nO
-    Guardi\xE3o precisa expuls\xE1-los antes que cheguem ao Rei.\n\n<i>Pressione
-    Enter para come\xE7ar.</i>"
+  captionContent: "As muralhas do castelo resistiram. Mas a horda continua descendo
+    das montanhas.\n\n\xC9 hora de sair em campo aberto e cortar o avan\xE7o pela
+    raiz.\n\n<i>Pressione Enter para continuar.</i>"
   captionText: {fileID: 313949817}
   captionGroup: {fileID: 539109141}
   captionFadeInDuration: 0.6

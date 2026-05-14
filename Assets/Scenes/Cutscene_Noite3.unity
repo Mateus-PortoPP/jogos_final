@@ -148,9 +148,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bc56f32116924f85861f4af3ad60f4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Manager.CutsceneController
-  captionContent: "Um Cristal Estelar — fragmento de uma estrela ca\xEDda.\n\nAo
-    toque, sua luz se funde \xE0 espada do Guardi\xE3o. Agora ele empunha o Corte
-    Estelar e a Investida.\n\n<i>Pressione Enter para continuar.</i>"
+  captionContent: "Um Cristal Estelar \u2014 fragmento de uma estrela ca\xEDda.\n\nAo
+    toque, sua luz se funde \xE0 espada do Guardi\xE3o:\n\xB7 Corte Estelar \u2014
+    segurar ataque\n\xB7 Investida \u2014 tecla Q\n\n<i>Pressione Enter para continuar.</i>"
   captionText: {fileID: 313949817}
   captionGroup: {fileID: 539109141}
   captionFadeInDuration: 0.6

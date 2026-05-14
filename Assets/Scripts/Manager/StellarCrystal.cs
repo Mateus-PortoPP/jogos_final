@@ -50,6 +50,10 @@ namespace TowerDefense.Manager
         [SerializeField] private float lightPulseAmplitude = 0.4f;
         [SerializeField] private float lightPulseSpeed = 2f;
 
+        [Header("Indicador (seta apontando pro cristal — opcional)")]
+        [Tooltip("GameObject (geralmente uma seta flutuante) que aparece quando o cristal é revelado, e some quando o jogador toca nele. Pode ser filho do cristal ou outro.")]
+        [SerializeField] private GameObject arrowIndicator;
+
         private Collider2D col;
         private SpriteRenderer[] sprites;
         private float[] spriteBaseAlphas;
@@ -91,6 +95,9 @@ namespace TowerDefense.Manager
                 lightBaseIntensity = crystalLight.intensity;
                 crystalLight.intensity = 0f; // começa apagado
             }
+
+            // Indicador começa oculto — só aparece junto do reveal
+            if (arrowIndicator != null) arrowIndicator.SetActive(false);
 
             col.enabled = false;
         }
@@ -162,6 +169,9 @@ namespace TowerDefense.Manager
             }
             if (crystalLight != null) crystalLight.intensity = lightBaseIntensity;
             col.enabled = true;
+
+            // Ativa o indicador (seta flutuante) só DEPOIS que o cristal apareceu
+            if (arrowIndicator != null) arrowIndicator.SetActive(true);
         }
 
         private void Update()
@@ -186,6 +196,7 @@ namespace TowerDefense.Manager
             if (!other.CompareTag(playerTag)) return;
             consumed = true;
             col.enabled = false;
+            if (arrowIndicator != null) arrowIndicator.SetActive(false);
 
             if (touchSound != null)
                 AudioSource.PlayClipAtPoint(touchSound, transform.position, soundVolume);

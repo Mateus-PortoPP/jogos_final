@@ -39,6 +39,8 @@ namespace TowerDefense.Player
         [SerializeField] private float stellarMinChargeTime = 3f;
         [Tooltip("Tempo de hold pra atingir dano máximo. Cargas maiores que isso não escalam mais.")]
         [SerializeField] private float stellarMaxChargeTime = 5f;
+        [Tooltip("Cooldown (segundos) após um Corte Estelar antes de poder usar outro. Ataque normal continua disponível durante esse cooldown.")]
+        [SerializeField] private float stellarCutCooldown = 5f;
 
         [Header("Corte Estelar — Dano")]
         [SerializeField] private int stellarMinDamage = 50;
@@ -80,11 +82,17 @@ namespace TowerDefense.Player
         private AnimatorParamCache animParams;
         private PlayerController controller;
         private float lastAttackTime = -999f;
+        private float lastStellarCutTime = -999f;
         private float chargeStartTime = -1f;
         private bool isCharging;
         private bool stellarReady; // vira true quando a carga cruza stellarMinChargeTime
         private AudioSource chargeAudioSource;
         private GameObject activeChargeParticles;
+
+        // Properties úteis pra UI de cooldown (HUD futuro)
+        public bool IsStellarCutOnCooldown => Time.time - lastStellarCutTime < stellarCutCooldown;
+        public float StellarCutCooldownRemaining => Mathf.Max(0f, stellarCutCooldown - (Time.time - lastStellarCutTime));
+        public float StellarCutCooldownMax => stellarCutCooldown;
 
         // O PlayerInput está em modo SendMessages, que só forward o callback de
         // 'performed' (press), não o de 'canceled' (release). Por isso polamos a
@@ -126,12 +134,12 @@ namespace TowerDefense.Player
             // Detecta o momento em que a carga cruza o threshold pra ativar o
             // feedback visual (partículas + sprite de carga + audio). Antes disso
             // o player parece normal — só "brilha" quando o Corte Estelar fica disponível.
-            // E só "brilha" se o jogador já desbloqueou o poder estelar (pós-Cristal),
-            // caso contrário segurar o botão não tem efeito especial.
+            // E só "brilha" se: desbloqueado E não em cooldown E carga atingiu o min.
             if (isCharging && !stellarReady && chargeStartTime >= 0f)
             {
                 bool stellarUnlocked = GameManager.Instance != null && GameManager.Instance.IsStellarPowersUnlocked;
-                if (stellarUnlocked && Time.time - chargeStartTime >= stellarMinChargeTime)
+                bool stellarReadyToFire = stellarUnlocked && !IsStellarCutOnCooldown;
+                if (stellarReadyToFire && Time.time - chargeStartTime >= stellarMinChargeTime)
                     EnterStellarReady();
             }
         }
@@ -200,11 +208,13 @@ namespace TowerDefense.Player
             chargeStartTime = -1f;
             lastAttackTime = Time.time;
 
-            // Corte Estelar só ativa se o jogador tocou no Cristal Estelar entre
-            // N2 e N3. Antes disso, mesmo segurando o botão, dispara ataque normal.
+            // Corte Estelar dispara se: carga >= min, poder desbloqueado, E não em cooldown.
+            // Senão (incluindo durante cooldown), sai ataque normal.
             bool stellarUnlocked = GameManager.Instance != null && GameManager.Instance.IsStellarPowersUnlocked;
-            if (chargeTime >= stellarMinChargeTime && stellarUnlocked)
+            bool canStellar = stellarUnlocked && !IsStellarCutOnCooldown && chargeTime >= stellarMinChargeTime;
+            if (canStellar)
             {
+                lastStellarCutTime = Time.time;
                 PerformStellarCut(chargeTime);
             }
             else
