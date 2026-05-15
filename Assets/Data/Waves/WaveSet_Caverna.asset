@@ -12,26 +12,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9407a5ef4c27e451ebc06e582f4aca7f, type: 3}
   m_Name: WaveSet_Caverna
   m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Manager.WaveSet
-  nightLabel: "Caverna — Confronto Final"
+  nightLabel: "Caverna \u2014 Confronto Final"
   waves:
-  - waveName: "onda 1 — avançada goblin"
-    spawnInterval: 0.6
+  - waveName: "onda 1 \u2014 incurs\xE3o"
+    spawnInterval: 0.85
     enemies:
     - prefab: {fileID: 3101165650726596048, guid: 3fc8ca17fcaf4436a8365d85afc8c1e4, type: 3}
-      count: 8
+      count: 16
     - prefab: {fileID: 6289584143474994543, guid: 71fc525900ebb488bbf92aa311a3178b, type: 3}
       count: 2
-  - waveName: "onda 2 — elite armada"
-    spawnInterval: 0.5
+  - waveName: "onda 2 \u2014 avan\xE7o"
+    spawnInterval: 0.8
     enemies:
     - prefab: {fileID: 3101165650726596048, guid: 3fc8ca17fcaf4436a8365d85afc8c1e4, type: 3}
-      count: 10
+      count: 20
+    - prefab: {fileID: 6289584143474994543, guid: 71fc525900ebb488bbf92aa311a3178b, type: 3}
+      count: 3
+  - waveName: "onda 3 \u2014 cerco"
+    spawnInterval: 0.75
+    enemies:
+    - prefab: {fileID: 3101165650726596048, guid: 3fc8ca17fcaf4436a8365d85afc8c1e4, type: 3}
+      count: 22
     - prefab: {fileID: 6289584143474994543, guid: 71fc525900ebb488bbf92aa311a3178b, type: 3}
       count: 4
-  - waveName: "onda final — O CHEFE"
-    spawnInterval: 0.9
+    - prefab: {fileID: 3101165650726596048, guid: 97a5d7fad61b64a93bcc2082b9cd97de, type: 3}
+      count: 1
+  - waveName: "onda 4 \u2014 investida"
+    spawnInterval: 0.7
+    enemies:
+    - prefab: {fileID: 3101165650726596048, guid: 3fc8ca17fcaf4436a8365d85afc8c1e4, type: 3}
+      count: 24
+    - prefab: {fileID: 6289584143474994543, guid: 71fc525900ebb488bbf92aa311a3178b, type: 3}
+      count: 5
+    - prefab: {fileID: 3101165650726596048, guid: 97a5d7fad61b64a93bcc2082b9cd97de, type: 3}
+      count: 2
+  - waveName: "onda final \u2014 O CHEFE"
+    spawnInterval: 1
     enemies:
     - prefab: {fileID: 6289584143474994543, guid: 71fc525900ebb488bbf92aa311a3178b, type: 3}
+      count: 6
+    - prefab: {fileID: 3101165650726596048, guid: 97a5d7fad61b64a93bcc2082b9cd97de, type: 3}
       count: 3
     - prefab: {fileID: 6479749089983029704, guid: 8b734939c6c9045059982091c6b4feb4, type: 3}
       count: 1

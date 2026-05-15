@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4673485037928680159}
   - component: {fileID: 1195519867922567986}
   - component: {fileID: 4664426950830477602}
+  - component: {fileID: 3542053548798864635}
   m_Layer: 0
   m_Name: Goblin_Armadura
   m_TagString: Enemy
@@ -272,3 +273,16 @@ MonoBehaviour:
   flashDuration: 0.07
   targetRenderer: {fileID: 4423136592293874525}
   flashMaterial: {fileID: 2100000, guid: 0e7c0384bc3bc4d549795ad5ba99e0c9, type: 2}
+--- !u!114 &3542053548798864635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6289584143474994543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72b70f17bade4aae9528a412d7e8dfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Enemies.EnemyNightScaling
+  hpPerNight: 1

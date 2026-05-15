@@ -1,0 +1,400 @@
+fileFormatVersion: 2
+guid: 5568a1ad219804172b0536191235320e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1594659779560694670
+    second: bola_fogo_0
+  - first:
+      213: -1742850859385907272
+    second: bola_fogo_1
+  - first:
+      213: -2043312971715051377
+    second: bola_fogo_2
+  - first:
+      213: -7929709075983572452
+    second: bola_fogo_3
+  - first:
+      213: -6717509543730181068
+    second: bola_fogo_4
+  - first:
+      213: 5477529629686295511
+    second: bola_fogo_5
+  - first:
+      213: 307113251928092736
+    second: bola_fogo_6
+  - first:
+      213: 6508710917843589726
+    second: bola_fogo_7
+  - first:
+      213: -4058159151959309972
+    second: bola_fogo_8
+  - first:
+      213: -7709994170898585384
+    second: bola_fogo_9
+  - first:
+      213: -4535340045541440131
+    second: bola_fogo_10
+  - first:
+      213: 7121198395946077454
+    second: bola_fogo_11
+  - first:
+      213: -624263628665877973
+    second: bola_fogo_12
+  - first:
+      213: -552287542722185793
+    second: bola_fogo_13
+  - first:
+      213: -1656700980669904689
+    second: bola_fogo_14
+  - first:
+      213: 7565596702759210051
+    second: bola_fogo_15
+  - first:
+      213: -1766578423508312635
+    second: bola_fogo_16
+  - first:
+      213: -5386952708511784841
+    second: bola_fogo_17
+  - first:
+      213: 4210202310479550621
+    second: bola_fogo_18
+  - first:
+      213: 235236554055685820
+    second: bola_fogo_19
+  - first:
+      213: 8174692978213968637
+    second: bola_fogo_20
+  - first:
+      213: -4963102616702426998
+    second: bola_fogo_21
+  - first:
+      213: -1827102563661596292
+    second: bola_fogo_22
+  - first:
+      213: -8958545386845842609
+    second: bola_fogo_23
+  - first:
+      213: 8258748523849204187
+    second: bola_fogo_24
+  - first:
+      213: -1282734266254863863
+    second: bola_fogo_25
+  - first:
+      213: 1318545773785989519
+    second: bola_fogo_26
+  - first:
+      213: -5054959083940083971
+    second: bola_fogo_27
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: bola_fogo_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 245
+        width: 237
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27c9ead1161aed9e0800000000000000
+      internalID: -1594659779560694670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bola_fogo_1
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 243
+        width: 179
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b791dd906620d7e0800000000000000
+      internalID: -1742850859385907272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bola_fogo_2
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 216
+        width: 268
+        height: 146
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f800afb9da1b4a3e0800000000000000
+      internalID: -2043312971715051377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bola_fogo_3
+      rect:
+        serializedVersion: 2
+        x: 781
+        y: 214
+        width: 284
+        height: 170
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c12eec9db9304f190800000000000000
+      internalID: -7929709075983572452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bola_fogo_4
+      rect:
+        serializedVersion: 2
+        x: 1130
+        y: 216
+        width: 296
+        height: 171
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bce170ba343254aadbb84ad111c77c44
+      internalID: -6717509543730181068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bola_fogo_5
+      rect:
+        serializedVersion: 2
+        x: 1483
+        y: 214
+        width: 284
+        height: 173
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07f891c347c9044db975cce538500ee4
+      internalID: 5477529629686295511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bola_fogo_6
+      rect:
+        serializedVersion: 2
+        x: 1783
+        y: 216
+        width: 298
+        height: 173
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 3}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fac3ba70d4864378b4e0d77a39d6fc6
+      internalID: 307113251928092736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bola_fogo_7
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 216
+        width: 241
+        height: 170
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d88acfb1d639541bcbc8c37fe687d139
+      internalID: 6508710917843589726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 34d3725f2fa864f9488788d34e7b652e
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":8.0,"y":1.0},"gridSpriteSize":{"x":300.0,"y":600.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      bola_fogo_0: -1594659779560694670
+      bola_fogo_1: -1742850859385907272
+      bola_fogo_2: -2043312971715051377
+      bola_fogo_3: -7929709075983572452
+      bola_fogo_4: -6717509543730181068
+      bola_fogo_5: 5477529629686295511
+      bola_fogo_6: 307113251928092736
+      bola_fogo_7: 6508710917843589726
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -38,12 +38,22 @@ namespace TowerDefense.Player
             }
 
             GameManager.Instance.OnPlayerUpgradeChanged += HandleUpgradeChanged;
+            GameManager.Instance.OnPlayerHealPurchased += HandleHealPurchased;
         }
 
         private void OnDestroy()
         {
             if (GameManager.Instance != null)
+            {
                 GameManager.Instance.OnPlayerUpgradeChanged -= HandleUpgradeChanged;
+                GameManager.Instance.OnPlayerHealPurchased -= HandleHealPurchased;
+            }
+        }
+
+        private void HandleHealPurchased()
+        {
+            var h = GetComponent<Health>();
+            if (h != null) h.Heal(h.Max); // cura total (clampa no máximo)
         }
 
         private void HandleUpgradeChanged(int newLevel)

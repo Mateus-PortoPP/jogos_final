@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4285903109228972384}
   - component: {fileID: 4040720318211764065}
   - component: {fileID: 6238009756293769193}
+  - component: {fileID: 4798397573086211440}
   m_Layer: 0
   m_Name: Goblin_Vermelho
   m_TagString: Enemy
@@ -34,7 +35,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.02, y: -3.18, z: 0}
-  m_LocalScale: {x: 1.35, y: 1.35, z: 1}
+  m_LocalScale: {x: 8.2, y: 8.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -206,16 +207,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Enemies.Goblin
   moveSpeed: 3.3
+  speedPerWave: 0
+  maxMoveSpeed: 6
   despawnX: -25
   detectionRange: 5
   attackRange: 0.5
   attackHeight: 1.5
   attackCooldown: 1.5
-  damage: 2
+  damage: 1
   playerTag: Player
   attackKnockbackForce: 0
   attackKnockbackUp: 0.4
   attackKnockbackStun: 0.25
+  fireballPrefab: {fileID: 1463132103131931148, guid: 0be8011a7f7474a6d891935716f58325, type: 3}
+  rangedRange: 7.5
+  rangedHeight: 3.5
+  rangedCooldown: 2.2
+  fireballSpeed: 9
+  fireballDamage: 3
+  fireballSpawnOffset: {x: 0.35, y: 0.15}
   spriteFacesRight: 1
   speedParam: Speed
   attackTrigger: Attack
@@ -223,7 +233,7 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: eb88d8933c3ad4adab42ee51cf39707d, type: 3}
   soundVolume: 1
   goldReward: 12
-  fortressDamage: 4
+  fortressDamage: 3
 --- !u!114 &4285903109228972384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,7 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdd736bb3f25643f69a43defacf56c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Common.Health
-  maxHealth: 28
+  maxHealth: 12
   destroyDelay: 1
   destroyOnDeath: 1
 --- !u!114 &4040720318211764065
@@ -267,3 +277,16 @@ MonoBehaviour:
   flashDuration: 0.07
   targetRenderer: {fileID: 8863830909658056866}
   flashMaterial: {fileID: 2100000, guid: 0e7c0384bc3bc4d549795ad5ba99e0c9, type: 2}
+--- !u!114 &4798397573086211440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3101165650726596048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72b70f17bade4aae9528a412d7e8dfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Enemies.EnemyNightScaling
+  hpPerNight: 1

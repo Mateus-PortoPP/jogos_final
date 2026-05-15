@@ -67,5 +67,13 @@ namespace TowerDefense.Common
             Current += delta;
             Damaged?.Invoke(Current, maxHealth);
         }
+
+        /// <summary>Cresce o HP máximo/atual SEM disparar evento (escala de inimigo no spawn — evita flash falso).</summary>
+        public void GrowMaxHealthSilent(int delta)
+        {
+            if (delta <= 0) return;
+            maxHealth += delta;
+            Current += delta;
+        }
     }
 }

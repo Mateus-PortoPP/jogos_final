@@ -1109,9 +1109,10 @@ MonoBehaviour:
   panelGroup: {fileID: 113124674}
   fadeSpeed: 5
   interactDelay: 0.7
-  showBeforeFirstWave: 0
+  showBeforeFirstWave: 1
   heroBaseCost: 30
   heroCostGrowth: 20
+  healCost: 40
   cannonBaseCost: 50
   cannonCostGrowth: 25
   heroButton: {fileID: 91597943}
@@ -2737,6 +2738,13 @@ MonoBehaviour:
   startingGold: 0
   maxFortressHP: 60
   totalNights: 5
+  maxPlayerUpgradeLevel: 8
+  debugLoadout: 0
+  debugNight: 5
+  debugGold: 500
+  debugStellarUnlocked: 1
+  debugCannonCount: 3
+  debugPlayerUpgradeLevel: 4
 --- !u!4 &453471588
 Transform:
   m_ObjectHideFlags: 0
@@ -5917,7 +5925,7 @@ MonoBehaviour:
   startWaveKeyAlt: 77
   preWaveCountdown: 3
   countdownText: {fileID: 348893977}
-  autoStartFirstWave: 1
+  autoStartFirstWave: 0
 --- !u!4 &1501868550
 Transform:
   m_ObjectHideFlags: 0

@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 7814932325111321171}
   - component: {fileID: 3013247151384239452}
   - component: {fileID: 3559680319476155044}
+  - component: {fileID: 9212040278876117739}
   m_Layer: 0
   m_Name: Goblin_Boss
   m_TagString: Enemy
@@ -36,7 +37,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.02, y: -3.18, z: 0}
-  m_LocalScale: {x: 14.899348, y: 14.938358, z: 2.5}
+  m_LocalScale: {x: 1.35, y: 1.35, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -90,8 +91,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 5859407067698585162, guid: f7dc7cdd99b984c439e021c55ff19578, type: 3}
-  m_Color: {r: 0.8, g: 0.3, b: 0.5, a: 1}
+  m_Sprite: {fileID: -6115139680825474602, guid: b904f55c27a4b4a8f88e4cf1f6e1e687, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -161,17 +162,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.05}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.15, y: 0.2}
+    oldSize: {x: 2.9, y: 2.3}
     newSize: {x: 0.15, y: 0.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.15, y: 0.2}
+  m_Size: {x: 1.7, y: 2}
   m_EdgeRadius: 0
 --- !u!95 &7182134664838295350
 Animator:
@@ -183,7 +184,7 @@ Animator:
   m_GameObject: {fileID: 6479749089983029704}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9ceb4f362cc944a619766836322335de, type: 2}
+  m_Controller: {fileID: 9100000, guid: 468916d90dc2e49e996e0f94ec394e14, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -208,6 +209,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Enemies.Goblin
   moveSpeed: 2
+  speedPerWave: 0
+  speedPerNight: 0
+  maxMoveSpeed: 6
   despawnX: -25
   detectionRange: 5
   attackRange: 0.5
@@ -218,6 +222,13 @@ MonoBehaviour:
   attackKnockbackForce: 12
   attackKnockbackUp: 0.4
   attackKnockbackStun: 0.3
+  fireballPrefab: {fileID: 0}
+  rangedRange: 7
+  rangedHeight: 3
+  rangedCooldown: 2.2
+  fireballSpeed: 9
+  fireballDamage: 3
+  fireballSpawnOffset: {x: 0.6, y: 0.3}
   spriteFacesRight: 1
   speedParam: Speed
   attackTrigger: Attack
@@ -226,6 +237,7 @@ MonoBehaviour:
   soundVolume: 1
   goldReward: 80
   fortressDamage: 20
+  aggroDuration: 1.5
 --- !u!114 &4630271614166556065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,7 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdd736bb3f25643f69a43defacf56c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Common.Health
-  maxHealth: 50
+  maxHealth: 110
   destroyDelay: 1
   destroyOnDeath: 1
 --- !u!114 &1857067594802911803
@@ -303,3 +315,16 @@ MonoBehaviour:
   shakeCameraHeavy: 1
   impactVfxPrefab: {fileID: 4049772628684532173, guid: 6bb73d9890fdd463ab761818f8fbf485, type: 3}
   vfxLifetime: 1.5
+--- !u!114 &9212040278876117739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6479749089983029704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72b70f17bade4aae9528a412d7e8dfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Enemies.EnemyNightScaling
+  hpPerNight: 1

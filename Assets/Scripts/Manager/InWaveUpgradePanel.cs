@@ -31,6 +31,8 @@ namespace TowerDefense.Manager
         [Tooltip("Custo do upgrade do herói no nível 0. A cada nível comprado, soma heroCostGrowth.")]
         [SerializeField] private int heroBaseCost = 30;
         [SerializeField] private int heroCostGrowth = 20;
+        [Tooltip("Custo da compra de CURA quando o herói está no nível MAX (ataque travado).")]
+        [SerializeField] private int healCost = 40;
         [Tooltip("Custo do canhão quando count=0. A cada canhão comprado, soma cannonCostGrowth.")]
         [SerializeField] private int cannonBaseCost = 50;
         [SerializeField] private int cannonCostGrowth = 25;
@@ -163,6 +165,17 @@ namespace TowerDefense.Manager
         private void OnBuyHero()
         {
             if (GameManager.Instance == null) return;
+
+            // Ataque no MAX: o botão vira compra de CURA (sem subir stats).
+            if (GameManager.Instance.PlayerUpgradeMaxed)
+            {
+                if (!GameManager.Instance.SpendGold(healCost)) return;
+                GameManager.Instance.PurchasePlayerHeal();
+                DeselectUI();
+                return;
+            }
+
+            // Abaixo do MAX: upgrade normal (que já cura junto).
             if (!GameManager.Instance.SpendGold(CurrentHeroCost())) return;
             GameManager.Instance.AddPlayerUpgrade();
             DeselectUI();
@@ -193,14 +206,17 @@ namespace TowerDefense.Manager
             int heroCost = CurrentHeroCost();
             int cannonCost = CurrentCannonCost();
 
-            if (goldText != null) goldText.text = $"🪙 {gold}";
-            if (heroCostText != null) heroCostText.text = $"🪙 {heroCost}";
-            if (heroLevelText != null) heroLevelText.text = $"Nv {heroLevel}";
-            Debug.Log($"[InWaveUpgradePanel] RefreshUI — leu GM.PlayerUpgradeLevel = {heroLevel} (GM id={(GameManager.Instance != null ? GameManager.Instance.GetInstanceID() : -1)})");
-            if (cannonCostText != null) cannonCostText.text = cannonEnabled ? $"🪙 {cannonCost}" : "🔒";
+            bool heroMaxed = GameManager.Instance != null && GameManager.Instance.PlayerUpgradeMaxed;
+
+            if (goldText != null) goldText.text = $"Ouro: {gold}";
+            // No MAX o card vira "Curar" (recupera vida); abaixo do MAX é upgrade normal.
+            if (heroCostText != null) heroCostText.text = heroMaxed ? $"Curar: {healCost}" : $"Ouro: {heroCost}";
+            if (heroLevelText != null) heroLevelText.text = heroMaxed ? "Nv MAX" : $"Nv {heroLevel}";
+            if (cannonCostText != null) cannonCostText.text = cannonEnabled ? $"Ouro: {cannonCost}" : "Travado";
             if (cannonCountText != null) cannonCountText.text = $"x {cannonCount}";
 
-            if (heroButton != null) heroButton.interactable = gold >= heroCost;
+            if (heroButton != null)
+                heroButton.interactable = heroMaxed ? gold >= healCost : gold >= heroCost;
             if (cannonButton != null) cannonButton.interactable = cannonEnabled && gold >= cannonCost;
         }
     }

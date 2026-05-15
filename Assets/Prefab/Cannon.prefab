@@ -301,4 +301,4 @@ MonoBehaviour:
   firePoint: {fileID: 123294862331046835}
   fireCooldown: 1.5
   projectileSpeed: 10
-  projectileDamage: 2
+  projectileDamage: 1

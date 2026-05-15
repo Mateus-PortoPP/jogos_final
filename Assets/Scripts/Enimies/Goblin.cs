@@ -25,6 +25,12 @@ namespace TowerDefense.Enemies
     {
         [Header("Movimento")]
         [SerializeField] private float moveSpeed = 3f;
+        [Tooltip("Acréscimo de velocidade por onda dentro da noite (rampa interna).")]
+        [SerializeField] private float speedPerWave = 0f;
+        [Tooltip("Acréscimo de velocidade por noite. Como a noite só sobe, a velocidade NÃO volta ao normal quando a noite vira — ela acumula até o teto e se mantém.")]
+        [SerializeField] private float speedPerNight = 0f;
+        [Tooltip("Velocidade máxima (teto). Depois de atingir, mantém.")]
+        [SerializeField] private float maxMoveSpeed = 5f;
         [Tooltip("Posição X muito à esquerda — fallback caso o goblin passe pela fortaleza. Normal: fortaleza captura via trigger antes disso.")]
         [SerializeField] private float despawnX = -25f;
 
@@ -42,6 +48,16 @@ namespace TowerDefense.Enemies
         [SerializeField] private float attackKnockbackForce = 0f;
         [SerializeField] private float attackKnockbackUp = 0.4f;
         [SerializeField] private float attackKnockbackStun = 0.25f;
+
+        [Header("Ataque à distância (opcional)")]
+        [Tooltip("Se setado, o inimigo para a essa distância e arremessa esse projétil no player em vez de ir pro corpo a corpo.")]
+        [SerializeField] private GameObject fireballPrefab;
+        [SerializeField] private float rangedRange = 7f;
+        [SerializeField] private float rangedHeight = 3f;
+        [SerializeField] private float rangedCooldown = 2.2f;
+        [SerializeField] private float fireballSpeed = 9f;
+        [SerializeField] private int fireballDamage = 3;
+        [SerializeField] private Vector2 fireballSpawnOffset = new Vector2(0.6f, 0.3f);
 
         [Header("Visual")]
         [Tooltip("O sprite olha pra direita por padrão? Se sim, o flip espelha quando o player está à esquerda.")]
@@ -66,6 +82,10 @@ namespace TowerDefense.Enemies
         [SerializeField] private int fortressDamage = 2;
         public int FortressDamage => fortressDamage;
 
+        [Header("Foco no castelo")]
+        [Tooltip("Tempo (s) que o goblin persegue o player após apanhar. Depois disso volta a marchar pro castelo. Menor = mais focado no castelo.")]
+        [SerializeField] private float aggroDuration = 1.5f;
+
         private Rigidbody2D rb;
         private SpriteRenderer sr;
         private Animator animator;
@@ -74,6 +94,8 @@ namespace TowerDefense.Enemies
         private Knockback knockback;
         private Transform player;
         private float lastAttackTime = -999f;
+        private float lastRangedTime = -999f;
+        private float aggroEndTime = -999f;
         // Quando true, o goblin foca o player (perseguir/atacar) em vez de ir pro castelo.
         // Vira true ao tomar dano do player; sai automaticamente se o player se afasta
         // pra fora de detectionRange.
@@ -107,12 +129,24 @@ namespace TowerDefense.Enemies
 
         private void OnTookDamage(int current, int max)
         {
-            // Qualquer hit faz o goblin agroar no player
+            // Apanhou: reage e persegue o player por um tempo CURTO, depois
+            // volta a focar o castelo (objetivo principal).
             aggroedOnPlayer = true;
+            aggroEndTime = Time.time + aggroDuration;
         }
 
         private void Start()
         {
+            // Velocidade escala com a NOITE (monotônico — nunca reseta quando a
+            // noite vira) + uma rampa interna por onda. Tudo limitado por maxMoveSpeed.
+            if (speedPerWave > 0f || speedPerNight > 0f)
+            {
+                int night = GameManager.Instance != null ? GameManager.Instance.CurrentNight : 1;
+                int wave = WaveManager.Instance != null ? WaveManager.Instance.CurrentWaveNumber : 1;
+                float bonus = (night - 1) * speedPerNight + (wave - 1) * speedPerWave;
+                moveSpeed = Mathf.Min(maxMoveSpeed, moveSpeed + bonus);
+            }
+
             var p = GameObject.FindGameObjectWithTag(playerTag);
             if (p != null)
             {
@@ -162,17 +196,37 @@ namespace TowerDefense.Enemies
                     float distX = Mathf.Abs(dx);
                     float distY = Mathf.Abs(player.position.y - transform.position.y);
 
-                    // Player saiu de alcance? Perde o aggro e volta pro castelo.
-                    if (aggroedOnPlayer && distX > detectionRange)
+                    // Perde o aggro (e volta a marchar pro castelo) se o player
+                    // saiu de alcance OU se o tempo de aggro acabou. O ataque
+                    // corpo a corpo (inAttackRange) continua valendo independente disso.
+                    if (aggroedOnPlayer && (distX > detectionRange || Time.time > aggroEndTime))
                     {
                         aggroedOnPlayer = false;
                     }
 
-                    bool inAttackRange = distX <= attackRange && distY <= attackHeight;
+                    // Caster: continua marchando pro castelo, mas arremessa projétil
+                    // no player enquanto avança (não para, não persegue).
+                    bool didRanged = false;
+                    if (fireballPrefab != null && distX <= rangedRange && distY <= rangedHeight)
+                    {
+                        didRanged = true;
+                        focusingPlayer = true; // vira pro player só pra mirar; vx continua rumo ao castelo
+                        UpdateFacing(dx);
+
+                        if (Time.time - lastRangedTime >= rangedCooldown)
+                        {
+                            lastRangedTime = Time.time;
+                            animParams.SetTrigger(attackTrigger);
+                            ThrowFireball(player);
+                        }
+                    }
+
+                    bool inAttackRange = !didRanged && distX <= attackRange && distY <= attackHeight;
 
                     if (inAttackRange)
                     {
-                        // Player no alcance de ataque: para e bate, independente de aggro
+                        // Player bloqueando o caminho: para e bate. NÃO persegue —
+                        // se o player sair do attackRange, volta a marchar pro castelo.
                         focusingPlayer = true;
                         vx = 0f;
                         animSpeedValue = 0f;
@@ -195,16 +249,6 @@ namespace TowerDefense.Enemies
                             }
                         }
                     }
-                    else if (aggroedOnPlayer && distX <= detectionRange)
-                    {
-                        // Aggrod e player dentro do alcance de detecção: persegue.
-                        focusingPlayer = true;
-                        float dirX = Mathf.Sign(dx);
-                        if (dirX == 0f) dirX = -1f;
-                        vx = dirX * moveSpeed;
-                        animSpeedValue = moveSpeed;
-                        UpdateFacing(dx);
-                    }
                 }
             }
 
@@ -221,6 +265,20 @@ namespace TowerDefense.Enemies
             {
                 // TODO Sprint 3: dano à Fortaleza antes de destruir
                 Destroy(gameObject);
+            }
+        }
+
+        private void ThrowFireball(Transform target)
+        {
+            if (fireballPrefab == null || target == null) return;
+            float facing = target.position.x >= transform.position.x ? 1f : -1f;
+            Vector3 spawn = transform.position + new Vector3(fireballSpawnOffset.x * facing, fireballSpawnOffset.y, 0f);
+            var fb = Instantiate(fireballPrefab, spawn, Quaternion.identity);
+            var proj = fb.GetComponent<CannonProjectile>();
+            if (proj != null)
+            {
+                Vector2 dir = ((Vector2)target.position - (Vector2)spawn).normalized;
+                proj.Launch(dir, fireballSpeed, fireballDamage, playerTag);
             }
         }
 

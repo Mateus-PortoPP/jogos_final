@@ -9,6 +9,8 @@ namespace TowerDefense.Manager
     /// ouro, HP da fortaleza, noite atual, upgrades comprados, e flags de fim.
     /// Persiste entre cenas (DontDestroyOnLoad) — a UI se inscreve nos eventos.
     /// </summary>
+    // Roda o Awake ANTES do WaveManager (que lê CurrentNight pra resolver as ondas).
+    [DefaultExecutionOrder(-100)]
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance { get; private set; }
@@ -21,6 +23,19 @@ namespace TowerDefense.Manager
 
         [Header("Noites")]
         [SerializeField] private int totalNights = 5;
+
+        [Header("Upgrade do cavaleiro")]
+        [Tooltip("Nível máximo do upgrade do herói. Impede o player de virar invencível e matar o boss em 2 golpes.")]
+        [SerializeField] private int maxPlayerUpgradeLevel = 8;
+
+        [Header("DEBUG — loadout de teste (NÃO ligar no build final)")]
+        [Tooltip("Se ligado, ao dar Play DIRETO nesta cena o jogo começa já com noite/ouro/poderes definidos. Inerte numa run completa (o GameManager persistente vence).")]
+        [SerializeField] private bool debugLoadout = false;
+        [SerializeField] private int debugNight = 5;
+        [SerializeField] private int debugGold = 500;
+        [SerializeField] private bool debugStellarUnlocked = true;
+        [SerializeField] private int debugCannonCount = 3;
+        [SerializeField] private int debugPlayerUpgradeLevel = 4;
 
         // --- Estado mutável ---
         private int currentGold;
@@ -42,6 +57,8 @@ namespace TowerDefense.Manager
         public int TotalNights => totalNights;
         public int CannonCount => cannonCount;
         public int PlayerUpgradeLevel => playerUpgradeLevel;
+        public int MaxPlayerUpgradeLevel => maxPlayerUpgradeLevel;
+        public bool PlayerUpgradeMaxed => playerUpgradeLevel >= maxPlayerUpgradeLevel;
         public bool IsStellarPowersUnlocked => stellarPowersUnlocked;
         public bool IsGameOver => isGameOver;
         public bool IsVictory => isVictory;
@@ -53,6 +70,7 @@ namespace TowerDefense.Manager
         public event Action<int, int> OnNightChanged;      // (currentNight, totalNights)
         public event Action<int> OnCannonCountChanged;
         public event Action<int> OnPlayerUpgradeChanged;
+        public event Action OnPlayerHealPurchased;   // compra de cura (pós nível MAX)
         public event Action OnStellarPowersUnlocked;
         public event Action OnGameOver;
         public event Action OnVictory;
@@ -68,6 +86,27 @@ namespace TowerDefense.Manager
             DontDestroyOnLoad(gameObject);
 
             ResetGame();
+
+            if (debugLoadout) ApplyDebugLoadout();
+        }
+
+        private void ApplyDebugLoadout()
+        {
+            currentNight = Mathf.Clamp(debugNight, 1, totalNights);
+            currentGold = Mathf.Max(0, debugGold);
+            cannonCount = Mathf.Max(0, debugCannonCount);
+            playerUpgradeLevel = Mathf.Clamp(debugPlayerUpgradeLevel, 0, maxPlayerUpgradeLevel);
+            stellarPowersUnlocked = debugStellarUnlocked;
+
+            OnGoldChanged?.Invoke(currentGold);
+            OnNightChanged?.Invoke(currentNight, totalNights);
+            OnCannonCountChanged?.Invoke(cannonCount);
+            OnPlayerUpgradeChanged?.Invoke(playerUpgradeLevel);
+            if (stellarPowersUnlocked) OnStellarPowersUnlocked?.Invoke();
+
+            Debug.Log("[GameManager] DEBUG loadout: noite " + currentNight + ", ouro " + currentGold
+                + ", canhoes " + cannonCount + ", upgrade " + playerUpgradeLevel
+                + ", estelar " + stellarPowersUnlocked);
         }
 
         public void AddGold(int amount)
@@ -139,9 +178,15 @@ namespace TowerDefense.Manager
 
         public void AddPlayerUpgrade()
         {
+            if (playerUpgradeLevel >= maxPlayerUpgradeLevel) return; // teto: não vira invencível
             playerUpgradeLevel++;
-            Debug.Log($"[GameManager] AddPlayerUpgrade chamado — novo level = {playerUpgradeLevel} (GM id={GetInstanceID()})");
             OnPlayerUpgradeChanged?.Invoke(playerUpgradeLevel);
+        }
+
+        /// <summary>Compra de cura — disponível mesmo com o ataque no MAX. Não altera stats.</summary>
+        public void PurchasePlayerHeal()
+        {
+            OnPlayerHealPurchased?.Invoke();
         }
 
         /// <summary>

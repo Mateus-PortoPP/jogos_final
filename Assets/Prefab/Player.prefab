@@ -120,7 +120,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ffbf98a9c0c6b4d29b25655242f605b3, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -141,7 +141,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ffbf98a9c0c6b4d29b25655242f605b3, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -272,8 +272,8 @@ MonoBehaviour:
   stellarMinChargeTime: 0.2
   stellarMaxChargeTime: 7
   stellarCutCooldown: 5
-  stellarMinDamage: 5
-  stellarMaxDamage: 20
+  stellarMinDamage: 4
+  stellarMaxDamage: 13
   stellarHitboxSize: {x: 4, y: 1.5}
   stellarHitboxOffset: {x: 1.8, y: 0.4}
   stellarKnockbackForce: 16
@@ -304,7 +304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdd736bb3f25643f69a43defacf56c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Common.Health
-  maxHealth: 4
+  maxHealth: 10
   destroyDelay: 0.6
   destroyOnDeath: 0
 --- !u!114 &3022159406724413426
@@ -391,9 +391,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79644b7b4f05b4b5cbd4c8f14502a88e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Player.PlayerUpgradeApplier
-  damagePerLevel: 2
+  damagePerLevel: 1
   hpPerLevel: 4
-  speedPerLevel: 0.3
+  speedPerLevel: 0.12
   healOnUpgrade: 1
 --- !u!114 &3234292179669602015
 MonoBehaviour:

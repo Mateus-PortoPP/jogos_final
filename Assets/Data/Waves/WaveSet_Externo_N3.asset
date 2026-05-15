@@ -15,14 +15,30 @@ MonoBehaviour:
   nightLabel: "Noite 3 (Externo \u2014 Press\xE3o crescente)"
   waves:
   - waveName: onda 1
-    spawnInterval: 0.5
+    spawnInterval: 0.9
     enemies:
     - prefab: {fileID: 3101165650726596048, guid: 3fc8ca17fcaf4436a8365d85afc8c1e4, type: 3}
-      count: 5
+      count: 13
   - waveName: onda 2
-    spawnInterval: 0.5
+    spawnInterval: 0.85
     enemies:
     - prefab: {fileID: 3101165650726596048, guid: 3fc8ca17fcaf4436a8365d85afc8c1e4, type: 3}
-      count: 5
+      count: 15
     - prefab: {fileID: 6289584143474994543, guid: 71fc525900ebb488bbf92aa311a3178b, type: 3}
+      count: 2
+  - waveName: onda 3
+    spawnInterval: 0.8
+    enemies:
+    - prefab: {fileID: 3101165650726596048, guid: 3fc8ca17fcaf4436a8365d85afc8c1e4, type: 3}
+      count: 17
+    - prefab: {fileID: 3101165650726596048, guid: 97a5d7fad61b64a93bcc2082b9cd97de, type: 3}
+      count: 1
+  - waveName: onda 4
+    spawnInterval: 0.75
+    enemies:
+    - prefab: {fileID: 3101165650726596048, guid: 3fc8ca17fcaf4436a8365d85afc8c1e4, type: 3}
+      count: 18
+    - prefab: {fileID: 6289584143474994543, guid: 71fc525900ebb488bbf92aa311a3178b, type: 3}
+      count: 3
+    - prefab: {fileID: 3101165650726596048, guid: 97a5d7fad61b64a93bcc2082b9cd97de, type: 3}
       count: 1

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4285903109228972384}
   - component: {fileID: 4040720318211764065}
   - component: {fileID: 6238009756293769193}
+  - component: {fileID: 9051673526235231334}
   m_Layer: 0
   m_Name: Goblin
   m_TagString: Enemy
@@ -206,6 +207,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Enemies.Goblin
   moveSpeed: 3
+  speedPerWave: 0.15
+  speedPerNight: 0.8
+  maxMoveSpeed: 5
   despawnX: -25
   detectionRange: 5
   attackRange: 0.5
@@ -213,6 +217,16 @@ MonoBehaviour:
   attackCooldown: 1.5
   damage: 1
   playerTag: Player
+  attackKnockbackForce: 0
+  attackKnockbackUp: 0.4
+  attackKnockbackStun: 0.25
+  fireballPrefab: {fileID: 0}
+  rangedRange: 7
+  rangedHeight: 3
+  rangedCooldown: 2.2
+  fireballSpeed: 9
+  fireballDamage: 3
+  fireballSpawnOffset: {x: 0.6, y: 0.3}
   spriteFacesRight: 1
   speedParam: Speed
   attackTrigger: Attack
@@ -221,6 +235,7 @@ MonoBehaviour:
   soundVolume: 1
   goldReward: 10
   fortressDamage: 2
+  aggroDuration: 1.5
 --- !u!114 &4285903109228972384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,7 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdd736bb3f25643f69a43defacf56c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Common.Health
-  maxHealth: 3
+  maxHealth: 5
   destroyDelay: 1
   destroyOnDeath: 1
 --- !u!114 &4040720318211764065
@@ -264,3 +279,16 @@ MonoBehaviour:
   flashDuration: 0.07
   targetRenderer: {fileID: 8863830909658056866}
   flashMaterial: {fileID: 2100000, guid: 0e7c0384bc3bc4d549795ad5ba99e0c9, type: 2}
+--- !u!114 &9051673526235231334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3101165650726596048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72b70f17bade4aae9528a412d7e8dfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Enemies.EnemyNightScaling
+  hpPerNight: 1

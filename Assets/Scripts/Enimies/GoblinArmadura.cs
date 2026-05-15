@@ -75,7 +75,7 @@ namespace TowerDefense.Enemies
         [SerializeField] private int fortressDamage = 6;
         public int FortressDamage => fortressDamage;
 
-        private enum BehaviorState { Approaching, Spotted, Charging, Dead }
+        private enum BehaviorState { Approaching, Roaring, Attacking, Dead }
         private BehaviorState behavior = BehaviorState.Approaching;
 
         private Rigidbody2D rb;
@@ -137,28 +137,26 @@ namespace TowerDefense.Enemies
                 distX = Mathf.Abs(dx);
                 distY = Mathf.Abs(player.position.y - transform.position.y);
             }
-            bool inDetectRange = playerAlive && distX <= detectionRange;
             bool inAttackRange = playerAlive && distX <= attackRange && distY <= attackHeight;
 
             switch (behavior)
             {
                 case BehaviorState.Approaching:
                     MoveToCastle();
-                    if (inDetectRange) EnterSpotted(dx);
+                    // Só reage se o player estiver BLOQUEANDO o caminho (colado).
+                    // Não corre atrás do player pelo mapa — objetivo é o castelo.
+                    if (inAttackRange) EnterRoar(dx);
                     break;
 
-                case BehaviorState.Spotted:
-                    // Parado tocando animação Agressivo, encarando o player.
+                case BehaviorState.Roaring:
+                    // Parado rugindo, encarando o player. Depois parte pro ataque.
                     rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
                     UpdateFacing(dx);
                     if (Time.time >= roarEndTime)
-                    {
-                        behavior = BehaviorState.Charging;
-                        PlayState(walkState);
-                    }
+                        behavior = BehaviorState.Attacking;
                     break;
 
-                case BehaviorState.Charging:
+                case BehaviorState.Attacking:
                     if (inAttackRange)
                     {
                         rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
@@ -167,10 +165,8 @@ namespace TowerDefense.Enemies
                     }
                     else
                     {
-                        float dir = dx >= 0f ? 1f : -1f;
-                        rb.linearVelocity = new Vector2(dir * moveSpeed * chargeSpeedMultiplier, rb.linearVelocity.y);
-                        UpdateFacing(dx);
-                        PlayState(walkState);
+                        // Player saiu da frente: volta a focar o castelo.
+                        behavior = BehaviorState.Approaching;
                     }
                     break;
             }
@@ -187,9 +183,9 @@ namespace TowerDefense.Enemies
             PlayState(walkState);
         }
 
-        private void EnterSpotted(float dx)
+        private void EnterRoar(float dx)
         {
-            behavior = BehaviorState.Spotted;
+            behavior = BehaviorState.Roaring;
             rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
             roarEndTime = Time.time + aggressiveRoarDuration;
             UpdateFacing(dx);

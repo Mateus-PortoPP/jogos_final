@@ -1020,6 +1020,13 @@ MonoBehaviour:
   startingGold: 0
   maxFortressHP: 60
   totalNights: 5
+  maxPlayerUpgradeLevel: 8
+  debugLoadout: 0
+  debugNight: 5
+  debugGold: 500
+  debugStellarUnlocked: 1
+  debugCannonCount: 3
+  debugPlayerUpgradeLevel: 4
 --- !u!4 &1595539778
 Transform:
   m_ObjectHideFlags: 0

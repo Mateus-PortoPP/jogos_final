@@ -552,7 +552,7 @@ MonoBehaviour:
   CameraDistance: 10.01
   DeadZoneDepth: 0
   Composition:
-    ScreenPosition: {x: 0.017777402, y: 0.13666688}
+    ScreenPosition: {x: 0.02, y: 0.34}
     DeadZone:
       Enabled: 1
       Size: {x: 0.1, y: 0.1}
@@ -3454,6 +3454,13 @@ MonoBehaviour:
   startingGold: 0
   maxFortressHP: 60
   totalNights: 5
+  maxPlayerUpgradeLevel: 8
+  debugLoadout: 0
+  debugNight: 5
+  debugGold: 500
+  debugStellarUnlocked: 1
+  debugCannonCount: 3
+  debugPlayerUpgradeLevel: 4
 --- !u!4 &453471588
 Transform:
   m_ObjectHideFlags: 0
@@ -6922,9 +6929,10 @@ MonoBehaviour:
   panelGroup: {fileID: 892490304}
   fadeSpeed: 5
   interactDelay: 0.7
-  showBeforeFirstWave: 0
+  showBeforeFirstWave: 1
   heroBaseCost: 30
   heroCostGrowth: 20
+  healCost: 40
   cannonBaseCost: 50
   cannonCostGrowth: 25
   heroButton: {fileID: 1127444900}
@@ -9248,7 +9256,7 @@ MonoBehaviour:
   startWaveKeyAlt: 77
   preWaveCountdown: 3
   countdownText: {fileID: 1015453099}
-  autoStartFirstWave: 1
+  autoStartFirstWave: 0
 --- !u!4 &1501868550
 Transform:
   m_ObjectHideFlags: 0
@@ -22503,6 +22511,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 341716425715979204, guid: ca16c6a8f21e9481e816fa2db3a0d398, type: 3}
+      propertyPath: m_GravityScale
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 830109185785691095, guid: ca16c6a8f21e9481e816fa2db3a0d398, type: 3}
       propertyPath: m_LocalScale.x
       value: 6.845847
