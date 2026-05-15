@@ -22,6 +22,8 @@ namespace TowerDefense.Manager
         [Header("Visibility")]
         [SerializeField] private CanvasGroup panelGroup;
         [SerializeField] private float fadeSpeed = 5f;
+        [Tooltip("Tempo (s) após o painel aparecer antes dos botões aceitarem clique. Evita clique acidental de quem estava atacando.")]
+        [SerializeField] private float interactDelay = 0.7f;
         [Tooltip("Se true, mostra o painel também antes da PRIMEIRA onda (logo que a cena carrega).")]
         [SerializeField] private bool showBeforeFirstWave = false;
 
@@ -55,6 +57,8 @@ namespace TowerDefense.Manager
         [SerializeField] private string nightEndHintMessage = "Pressione Enter para próxima noite";
 
         private float targetAlpha;
+        private float showStartTime = -999f;
+        private bool wasVisible;
         private NightEndController nightEnd;
 
         private void Start()
@@ -131,9 +135,17 @@ namespace TowerDefense.Manager
         {
             if (panelGroup == null) return;
             panelGroup.alpha = Mathf.MoveTowards(panelGroup.alpha, targetAlpha, fadeSpeed * Time.deltaTime);
+
             bool visible = panelGroup.alpha > 0.01f;
-            panelGroup.interactable = visible;
-            panelGroup.blocksRaycasts = visible;
+            // Marca o instante em que o painel COMEÇOU a aparecer.
+            if (visible && !wasVisible) showStartTime = Time.unscaledTime;
+            wasVisible = visible;
+
+            // Só aceita clique depois do grace period — quem estava martelando o
+            // botão de ataque clica "no vazio" (raycast passa) em vez de comprar sem querer.
+            bool acceptsInput = visible && (Time.unscaledTime - showStartTime >= interactDelay);
+            panelGroup.interactable = acceptsInput;
+            panelGroup.blocksRaycasts = acceptsInput;
         }
 
         private int CurrentHeroCost()
