@@ -171,9 +171,20 @@ namespace TowerDefense.Enemies
                     break;
             }
 
-            // Despawn se passou da fortaleza
+            // Despawn se passou da fortaleza — conta como "chegou no castelo"
+            // (dano + baixa) mesmo se o trigger da Fortress falhar.
             if (transform.position.x <= despawnX)
-                Destroy(gameObject);
+                ReachCastleAndDespawn();
+        }
+
+        private bool castleReached;
+        private void ReachCastleAndDespawn()
+        {
+            if (castleReached) return;
+            castleReached = true;
+            GameManager.Instance?.TakeFortressDamage(fortressDamage);
+            WaveManager.Instance?.RegisterEnemyReachedCastle();
+            Destroy(gameObject);
         }
 
         private void MoveToCastle()

@@ -263,9 +263,21 @@ namespace TowerDefense.Enemies
 
             if (transform.position.x <= despawnX)
             {
-                // TODO Sprint 3: dano à Fortaleza antes de destruir
-                Destroy(gameObject);
+                ReachCastleAndDespawn();
             }
+        }
+
+        // Fallback: se o inimigo passou batido pelo trigger da Fortress e chegou
+        // no despawnX, ele AINDA conta como "chegou no castelo" (dano + baixa no
+        // WaveManager). Sem isso a onda nunca termina se o trigger falhar.
+        private bool castleReached;
+        private void ReachCastleAndDespawn()
+        {
+            if (castleReached) return;
+            castleReached = true;
+            GameManager.Instance?.TakeFortressDamage(fortressDamage);
+            WaveManager.Instance?.RegisterEnemyReachedCastle();
+            Destroy(gameObject);
         }
 
         private void ThrowFireball(Transform target)
