@@ -34,6 +34,10 @@ namespace TowerDefense.Enemies
         [Tooltip("Posição X muito à esquerda — fallback caso o goblin passe pela fortaleza. Normal: fortaleza captura via trigger antes disso.")]
         [SerializeField] private float despawnX = -25f;
 
+        [Header("Comportamento")]
+        [Tooltip("Modo minion de Tower Defense: ignora 100% o player, nunca para pra atacar — só corre pra fortaleza. O player/canhões precisam matá-lo. Ligar só no goblin pequeno.")]
+        [SerializeField] private bool pureRusher = false;
+
         [Header("Detecção e combate")]
         [Tooltip("Distância no eixo X em que o goblin 'acorda' e começa a perseguir.")]
         [SerializeField] private float detectionRange = 5f;
@@ -165,6 +169,10 @@ namespace TowerDefense.Enemies
 
         private void FixedUpdate()
         {
+            // Blindagem contra hot-reload (animParams null se Awake não rodou nessa instância)
+            if (animParams == null) animParams = new AnimatorParamCache(GetComponent<Animator>());
+            if (rb == null) rb = GetComponent<Rigidbody2D>();
+
             // Morto: para tudo
             if (health != null && health.IsDead)
             {
@@ -185,7 +193,27 @@ namespace TowerDefense.Enemies
             float animSpeedValue = moveSpeed;
             bool focusingPlayer = false;
 
-            if (player != null)
+            // Modo rusher (minion TD): NÃO para nem persegue, mas se o player
+            // ficar no caminho ele dá um hit "de passagem" (continua marchando).
+            if (pureRusher && player != null)
+            {
+                var pd = player.GetComponent<IDamageable>();
+                if (pd != null && !pd.IsDead)
+                {
+                    float ddx = Mathf.Abs(player.position.x - transform.position.x);
+                    float ddy = Mathf.Abs(player.position.y - transform.position.y);
+                    if (ddx <= attackRange && ddy <= attackHeight
+                        && Time.time - lastAttackTime >= attackCooldown)
+                    {
+                        lastAttackTime = Time.time;
+                        animParams.SetTrigger(attackTrigger);
+                        pd.TakeDamage(damage); // dano de esbarrão, sem parar a marcha
+                    }
+                }
+            }
+
+            // Sem rusher: comportamento normal (para/ataca quem bloqueia).
+            if (!pureRusher && player != null)
             {
                 var playerDmg = player.GetComponent<IDamageable>();
                 bool playerAlive = playerDmg != null && !playerDmg.IsDead;

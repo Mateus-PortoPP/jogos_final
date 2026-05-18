@@ -87,6 +87,7 @@ namespace TowerDefense.Enemies
         private float roarEndTime;
         private float lastAttackTime = -999f;
         private string currentStateName;
+        private bool hasRoared; // ruge UMA vez por inimigo — depois é só atacar
 
         private void Awake()
         {
@@ -143,9 +144,13 @@ namespace TowerDefense.Enemies
             {
                 case BehaviorState.Approaching:
                     MoveToCastle();
-                    // Só reage se o player estiver BLOQUEANDO o caminho (colado).
-                    // Não corre atrás do player pelo mapa — objetivo é o castelo.
-                    if (inAttackRange) EnterRoar(dx);
+                    // Player bloqueando o caminho: ruge UMA vez (na 1ª vez),
+                    // depois vai direto pro ataque — nunca re-ruge (sem loop).
+                    if (inAttackRange)
+                    {
+                        if (!hasRoared) EnterRoar(dx);
+                        else behavior = BehaviorState.Attacking;
+                    }
                     break;
 
                 case BehaviorState.Roaring:
@@ -197,6 +202,7 @@ namespace TowerDefense.Enemies
         private void EnterRoar(float dx)
         {
             behavior = BehaviorState.Roaring;
+            hasRoared = true; // não ruge de novo — sem loop de agressivo
             rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
             roarEndTime = Time.time + aggressiveRoarDuration;
             UpdateFacing(dx);

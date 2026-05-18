@@ -211,6 +211,7 @@ MonoBehaviour:
   speedPerNight: 0.8
   maxMoveSpeed: 5
   despawnX: -25
+  pureRusher: 1
   detectionRange: 5
   attackRange: 0.5
   attackHeight: 1.5

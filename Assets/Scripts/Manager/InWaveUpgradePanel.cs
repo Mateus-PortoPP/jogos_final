@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -24,8 +25,10 @@ namespace TowerDefense.Manager
         [SerializeField] private float fadeSpeed = 5f;
         [Tooltip("Tempo (s) após o painel aparecer antes dos botões aceitarem clique. Evita clique acidental de quem estava atacando.")]
         [SerializeField] private float interactDelay = 0.7f;
-        [Tooltip("Se true, mostra o painel também antes da PRIMEIRA onda (logo que a cena carrega).")]
+        [Tooltip("Se true, mostra o painel no início da noite (depois do jogo de câmera terminar).")]
         [SerializeField] private bool showBeforeFirstWave = false;
+        [Tooltip("Espera mínima (s) no início antes de checar a câmera — dá tempo do pan começar.")]
+        [SerializeField] private float startShowDelay = 0.6f;
 
         [Header("Custos")]
         [Tooltip("Custo do upgrade do herói no nível 0. A cada nível comprado, soma heroCostGrowth.")]
@@ -67,7 +70,10 @@ namespace TowerDefense.Manager
         {
             nightEnd = FindObjectOfType<NightEndController>();
             if (panelGroup != null) panelGroup.alpha = 0f;
-            targetAlpha = showBeforeFirstWave ? 1f : 0f;
+            targetAlpha = 0f;
+            // Início da noite: o painel só aparece DEPOIS do jogo de câmera
+            // (intro/pan), pra não tapar a cena. Aí pausa até o jogador continuar.
+            if (showBeforeFirstWave) StartCoroutine(ShowAfterCameraIntro());
 
             if (hintText != null) hintText.text = hintMessage;
 
@@ -100,6 +106,7 @@ namespace TowerDefense.Manager
 
         private void OnDestroy()
         {
+            Time.timeScale = 1f; // segurança: nunca deixar o jogo congelado ao trocar de cena
             if (WaveManager.Instance != null)
             {
                 WaveManager.Instance.OnWaveStarted -= HandleWaveStarted;
@@ -107,9 +114,29 @@ namespace TowerDefense.Manager
             }
         }
 
+        private IEnumerator ShowAfterCameraIntro()
+        {
+            // espera o pan começar
+            yield return new WaitForSeconds(startShowDelay);
+            // espera o jogo de câmera (intro/pan) terminar
+            float guard = 0f;
+            while (CameraFocusPan.Instance != null && CameraFocusPan.Instance.IsBusy && guard < 8f)
+            {
+                guard += Time.unscaledDeltaTime;
+                yield return null;
+            }
+            // só mostra se ainda estamos antes da 1ª onda (não começou nada)
+            var wm = WaveManager.Instance;
+            if (wm != null && wm.IsWaveActive) yield break;
+            if (hintText != null) hintText.text = hintMessage;
+            targetAlpha = 1f;
+            Time.timeScale = 0f; // pausa pro upgrade de início de noite
+        }
+
         private void HandleWaveStarted(int idx)
         {
             targetAlpha = 0f;
+            Time.timeScale = 1f; // retoma o jogo quando a próxima onda começa
             if (hintText != null) hintText.text = hintMessage;
         }
         private void HandleWaveCompleted(int idx)
@@ -117,8 +144,7 @@ namespace TowerDefense.Manager
             var wm = WaveManager.Instance;
             if (wm != null && wm.AllWavesCompleted)
             {
-                // Só mostra o painel na ÚLTIMA onda se o NightEndController tem um target
-                // pra noite atual (cristal/porta cuidam de outros casos sem precisar de UI).
+                // Fim de noite: não congela (a transição de cena cuida disso).
                 if (nightEnd != null && nightEnd.HasTargetForCurrentNight())
                 {
                     if (hintText != null) hintText.text = nightEndHintMessage;
@@ -130,13 +156,16 @@ namespace TowerDefense.Manager
                 }
                 return;
             }
+            // Entre ondas: mostra o painel E PAUSA o jogo até o jogador continuar.
             targetAlpha = 1f;
+            Time.timeScale = 0f;
         }
 
         private void Update()
         {
             if (panelGroup == null) return;
-            panelGroup.alpha = Mathf.MoveTowards(panelGroup.alpha, targetAlpha, fadeSpeed * Time.deltaTime);
+            // unscaled: o painel anima mesmo com o jogo pausado (timeScale 0).
+            panelGroup.alpha = Mathf.MoveTowards(panelGroup.alpha, targetAlpha, fadeSpeed * Time.unscaledDeltaTime);
 
             bool visible = panelGroup.alpha > 0.01f;
             // Marca o instante em que o painel COMEÇOU a aparecer.

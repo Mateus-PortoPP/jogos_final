@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdd736bb3f25643f69a43defacf56c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Common.Health
-  maxHealth: 15
+  maxHealth: 40
   destroyDelay: 1
   destroyOnDeath: 1
 --- !u!114 &4673485037928680159

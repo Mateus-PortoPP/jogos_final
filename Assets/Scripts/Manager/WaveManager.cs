@@ -131,6 +131,7 @@ namespace TowerDefense.Manager
         public void StartNextWave()
         {
             if (!CanStartNextWave) return;
+            Time.timeScale = 1f; // sai da pausa do painel de upgrade antes do countdown
             StartCoroutine(CountdownThenSpawnNextWave());
         }
 

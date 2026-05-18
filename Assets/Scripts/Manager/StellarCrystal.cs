@@ -172,6 +172,10 @@ namespace TowerDefense.Manager
 
             // Ativa o indicador (seta flutuante) só DEPOIS que o cristal apareceu
             if (arrowIndicator != null) arrowIndicator.SetActive(true);
+
+            // Câmera vai até o cristal e volta — guia o jogador.
+            if (CameraFocusPan.Instance != null)
+                CameraFocusPan.Instance.FocusOn(transform.position);
         }
 
         private void Update()

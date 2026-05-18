@@ -111,6 +111,10 @@ namespace TowerDefense.Player
 
         private void FixedUpdate()
         {
+            // Blindagem contra hot-reload (animParams/rb null se Awake não rodou nessa instância)
+            if (animParams == null) animParams = new AnimatorParamCache(GetComponent<Animator>());
+            if (rb == null) rb = GetComponent<Rigidbody2D>();
+
             // Morto: ignora input mas deixa a gravidade agir
             if (isDead)
             {

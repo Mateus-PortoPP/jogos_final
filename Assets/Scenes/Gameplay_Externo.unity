@@ -472,6 +472,7 @@ GameObject:
   - component: {fileID: 38547551}
   - component: {fileID: 38547552}
   - component: {fileID: 38547553}
+  - component: {fileID: 38547554}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -612,6 +613,22 @@ MonoBehaviour:
     FrequencyGain: 1
     Duration: 1
     m_NoiseOffsets: {x: 0, y: 0, z: 0}
+--- !u!114 &38547554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38547547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ce41ec20813a4870ac17a23519bb162, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Manager.CameraFocusPan
+  vcam: {fileID: 38547549}
+  toDuration: 1.1
+  holdDuration: 0.9
+  backDuration: 1.1
 --- !u!1 &52030413
 GameObject:
   m_ObjectHideFlags: 0
@@ -1848,6 +1865,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 256543621}
   m_CullTransparentMesh: 1
+--- !u!1 &273830326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 273830328}
+  - component: {fileID: 273830327}
+  m_Layer: 0
+  m_Name: CameraCue_Intro
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &273830327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 273830326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 354916cb9a11a4172a221017825fafca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerDefense.Manager.CameraIntroCue
+  target: {fileID: 11849514}
+  startDelay: 0.4
+--- !u!4 &273830328
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 273830326}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &279968038
 GameObject:
   m_ObjectHideFlags: 0
@@ -6415,6 +6478,7 @@ MonoBehaviour:
   fadeSpeed: 5
   interactDelay: 0.7
   showBeforeFirstWave: 1
+  startShowDelay: 0.6
   heroBaseCost: 30
   heroCostGrowth: 20
   healCost: 40
@@ -21887,3 +21951,4 @@ SceneRoots:
   - {fileID: 21942606}
   - {fileID: 1320925063}
   - {fileID: 1024020886}
+  - {fileID: 273830328}
