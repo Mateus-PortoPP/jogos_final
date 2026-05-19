@@ -11,5 +11,14 @@ namespace TowerDefense.Manager
         {
             SceneManager.LoadScene(firstSceneName);
         }
+
+        public void QuitGame()
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+        }
     }
 }

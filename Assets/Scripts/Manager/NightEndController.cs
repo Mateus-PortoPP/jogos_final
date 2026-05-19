@@ -67,6 +67,11 @@ namespace TowerDefense.Manager
             string scene = nextSceneByNight[idx];
             if (string.IsNullOrEmpty(scene)) return; // door handles it
 
+            // Noite final concluída = vitória
+            int totalNights = GameManager.Instance != null ? GameManager.Instance.TotalNights : 5;
+            if (night >= totalNights)
+                GameManager.Instance?.TriggerVictory();
+
             targetScene = scene;
             readyToProceed = true;
             Debug.Log($"[NightEndController] Noite {night} encerrada. Aperte Enter pra ir para '{targetScene}'.");
