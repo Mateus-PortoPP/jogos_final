@@ -11,6 +11,8 @@ namespace TowerDefense.Manager
         [SerializeField] private Transform target;
         [Tooltip("Se true, só dispara uma vez (não repete a cada reload da cena na mesma noite).")]
         [SerializeField] private bool once = true;
+        [Tooltip("Se > 0, só dispara quando GameManager.CurrentNight == requiredNight. 0 = qualquer noite (comportamento padrão).")]
+        [SerializeField] private int requiredNight = 0;
 
         private bool fired;
 
@@ -35,6 +37,11 @@ namespace TowerDefense.Manager
         private void Handle()
         {
             if (once && fired) return;
+            if (requiredNight > 0)
+            {
+                int night = GameManager.Instance != null ? GameManager.Instance.CurrentNight : 0;
+                if (night != requiredNight) return; // não consome 'fired' — só dispara na noite certa
+            }
             fired = true;
             if (target != null && CameraFocusPan.Instance != null)
                 CameraFocusPan.Instance.FocusOn(target.position);
