@@ -44,6 +44,10 @@ namespace TowerDefense.Manager
         [SerializeField] private Button heroButton;
         [SerializeField] private TextMeshProUGUI heroCostText;
         [SerializeField] private TextMeshProUGUI heroLevelText;
+        [Tooltip("Image do ícone do card Herói. Troca pro ícone de cura quando o herói atinge o nível MÁX.")]
+        [SerializeField] private Image heroIconImage;
+        [SerializeField] private Sprite heroNormalIcon; // upgrade_heroi
+        [SerializeField] private Sprite heroHealIcon;   // upgrade_saude_heroi (modo cura no MÁX)
 
         [Header("Botão Canhão")]
         [SerializeField] private bool cannonEnabled = true;
@@ -238,6 +242,12 @@ namespace TowerDefense.Manager
             bool heroMaxed = GameManager.Instance != null && GameManager.Instance.PlayerUpgradeMaxed;
 
             if (goldText != null) goldText.text = $"Ouro: {gold}";
+            // Ícone do herói: normal abaixo do MÁX, ícone de cura quando MÁX.
+            if (heroIconImage != null)
+            {
+                var icon = heroMaxed ? heroHealIcon : heroNormalIcon;
+                if (icon != null) heroIconImage.sprite = icon;
+            }
             // No MAX o card vira "Curar" (recupera vida); abaixo do MAX é upgrade normal.
             if (heroCostText != null) heroCostText.text = heroMaxed ? $"Curar: {healCost}" : $"Ouro: {heroCost}";
             if (heroLevelText != null) heroLevelText.text = heroMaxed ? "Nv MAX" : $"Nv {heroLevel}";

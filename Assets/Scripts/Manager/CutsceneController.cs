@@ -41,9 +41,52 @@ namespace TowerDefense.Manager
         // 0 = aguardando 1º input | 1 = aguardando 2º input | 2 = transicionando
         private int step;
 
+        // Aviso pulsante "Pressione Enter" criado em runtime (vale p/ toda cutscene).
+        private TextMeshProUGUI enterHint;
+
+        private void CreateEnterHint()
+        {
+            var canvas = FindObjectOfType<Canvas>();
+            if (canvas == null) return;
+
+            var go = new GameObject("EnterHint");
+            go.transform.SetParent(canvas.transform, false);
+            var rt = go.AddComponent<RectTransform>();
+            rt.anchorMin = new Vector2(0.5f, 0f);
+            rt.anchorMax = new Vector2(0.5f, 0f);
+            rt.pivot = new Vector2(0.5f, 0f);
+            rt.anchoredPosition = new Vector2(0f, 36f);
+            rt.sizeDelta = new Vector2(900f, 60f);
+
+            enterHint = go.AddComponent<TextMeshProUGUI>();
+            enterHint.text = "▸  Pressione ENTER para continuar  ◂";
+            enterHint.fontSize = 30;
+            enterHint.alignment = TextAlignmentOptions.Center;
+            enterHint.color = Color.white;
+            enterHint.raycastTarget = false;
+        }
+
+        // Fonte das cutscenes (Jacquard 12 — SIL OFL). Criada uma vez e reusada.
+        private static TMP_FontAsset cutsceneFont;
+
+        private void ApplyCutsceneFont()
+        {
+            if (cutsceneFont == null)
+            {
+                var ttf = Resources.Load<Font>("Fonts/Jacquard12-Regular");
+                if (ttf != null) cutsceneFont = TMP_FontAsset.CreateFontAsset(ttf);
+            }
+            if (cutsceneFont == null) return;
+            // Aplica em TODOS os textos da cutscene (legenda + hint "Pressione Enter")
+            foreach (var t in FindObjectsOfType<TMP_Text>(true))
+                t.font = cutsceneFont;
+        }
+
         private void Awake()
         {
             if (captionText != null) captionText.text = captionContent;
+            CreateEnterHint();
+            ApplyCutsceneFont(); // aplica a fonte também no hint recém-criado
             if (captionGroup != null) captionGroup.alpha = 0f;
             if (fadeOverlay != null)
             {
@@ -55,6 +98,13 @@ namespace TowerDefense.Manager
 
         private void Update()
         {
+            // Pulsa o aviso de Enter; some quando começa a transição.
+            if (enterHint != null)
+            {
+                if (step == 2) enterHint.alpha = 0f;
+                else enterHint.alpha = 0.45f + 0.55f * (0.5f + 0.5f * Mathf.Sin(Time.unscaledTime * 3f));
+            }
+
             if (step == 2) return;
 
             var keyboard = Keyboard.current;
