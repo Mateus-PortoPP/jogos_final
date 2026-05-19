@@ -1,29 +1,22 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace TowerDefense.Manager
 {
     public class GameOverManager : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI titleText;
-
-        [Header("Vitória")]
-        [SerializeField] private string victoryTitle =
-            "VITÓRIA\nReino Defendido\n\n<size=60%><i>O reino está a salvo.\nO Guardião descansa.</i></size>";
-
-        [Header("Derrota")]
-        [SerializeField] private string defeatTitle = "DERROTA";
+        [Header("Fundo")]
+        [SerializeField] private Image backgroundImage;
+        [SerializeField] private Sprite victorySprite;
+        [SerializeField] private Sprite defeatSprite;
 
         private void Start()
         {
-            if (titleText == null)
-                titleText = FindObjectOfType<TextMeshProUGUI>();
-
-            if (titleText == null) return;
-
             bool isVictory = GameManager.Instance != null && GameManager.Instance.IsVictory;
-            titleText.text = isVictory ? victoryTitle : defeatTitle;
+
+            if (backgroundImage != null)
+                backgroundImage.sprite = isVictory ? victorySprite : defeatSprite;
         }
 
         public void RestartGame()
